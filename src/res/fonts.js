@@ -1,6 +1,6 @@
 const fonts = {
-    title: 'Arial',
-    text: 'SanFrancisco',
+    title: 'OpenSans',
+    text: 'Montserrat',
     code: 'Fira'
 }
 
