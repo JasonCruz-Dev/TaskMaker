@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, StatusBar, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import colors from 'res/colors';
 import { Feather } from '@expo/vector-icons';
 
@@ -14,10 +14,6 @@ class Splash extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar
-                    backgroundColor={colors.backgroundColor}
-                    barStyle="dark-content"
-                />
                 <Feather name='check-circle' size={60} color={colors.red} />
                 <Text style={styles.text}>Task Maker</Text>
             </View>

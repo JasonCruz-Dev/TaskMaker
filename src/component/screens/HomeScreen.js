@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StatusBar } from 'react-native';
 import { DayCard } from '../common';
+import { connect } from 'react-redux';
 import { Feather, Entypo, } from '@expo/vector-icons';
 import colors from 'res/colors';
 
@@ -16,6 +17,9 @@ class HomeScreen extends React.Component {
                 <Entypo name='dots-three-vertical' size={24} color={colors.red} />
             </TouchableOpacity>,
     }
+    onPress() {
+        this.props.navigation.navigate('AddTasks');
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -23,9 +27,9 @@ class HomeScreen extends React.Component {
                     backgroundColor={colors.backgroundColor}
                     barStyle="dark-content"
                 />
-                <DayCard>Today</DayCard>
-                <DayCard>Tomorrow</DayCard>
-                <DayCard>Someday</DayCard>
+                <DayCard onPress={() => this.onPress()}>Today</DayCard>
+                <DayCard onPress={() => this.onPress()}>Tomorrow</DayCard>
+                <DayCard onPress={() => this.onPress()}>Someday</DayCard>
                 <TouchableOpacity style={styles.actionButton}>
                     <Entypo name='plus' size={35} color={colors.backgroundColor} />
                 </TouchableOpacity>
@@ -48,4 +52,10 @@ const styles = {
     }
 };
 
-export default HomeScreen;
+const mapStateToProps = state => {
+    return {
+        taskArray: state.tasks.taskArray
+    };
+}
+
+export default connect(mapStateToProps, {})(HomeScreen);
