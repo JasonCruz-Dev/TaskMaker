@@ -13,16 +13,16 @@ const Button = (props) => {
 const styles = {
     textStyle: {
         color: colors.white,
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: '500',
     },
     buttonStyle: {
         left: 0,
         right: 0,
-        borderRadius: 3,
+        borderRadius: 30,
         backgroundColor: colors.button,
-        paddingVertical: 10,
-        elevation: 3,
+        paddingVertical: 12,
+        elevation: 5,
         justifyContent: 'center',
         alignItems: 'center'
     }

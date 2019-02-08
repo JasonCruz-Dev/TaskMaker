@@ -1,6 +1,6 @@
 const fonts = {
-    title: 'OpenSans',
-    text: 'Montserrat',
+    title: 'open-sans',
+    text: 'montserrat',
     code: 'Fira'
 }
 

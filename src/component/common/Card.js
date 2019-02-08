@@ -12,7 +12,8 @@ const Card = (props) => {
 const styles = {
     constainerStyle: {
         elevation: 1,
-        padding: 5
+        paddingHorizontal: 20,
+        paddingVertical: 10
     }
 }
 

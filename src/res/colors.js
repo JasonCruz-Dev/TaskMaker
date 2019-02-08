@@ -10,6 +10,7 @@ const colors = {
     indigo: '#5062aa',
     purple: '#8e4c9e',
     red: '#da304c',
+    lightRed: '#ec93a2',
     lightGrey: '#d5d7d8',
     darkGrey: '#62676a'
 }

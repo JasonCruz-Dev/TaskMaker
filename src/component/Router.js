@@ -12,18 +12,9 @@ const HomeStackNavigator = createStackNavigator({
     }
 });
 
-const AuthStackNavigator = createStackNavigator({
-    Login: {
-        screen: Login,
-        navigationOptions: {
-            header: null
-        }
-    }
-});
-
 const Router = createSwitchNavigator({
     Splash: Splash,
-    Auth: AuthStackNavigator,
+    Auth: Login,
     Home: HomeStackNavigator,
     Test: Login
 },
