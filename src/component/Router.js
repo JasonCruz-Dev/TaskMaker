@@ -6,9 +6,6 @@ import Splash from 'screens/Splash';
 const HomeStackNavigator = createStackNavigator({
     HomeScreen: {
         screen: HomeScreen,
-        navigationOptions: {
-            headerTitle: 'ALL TASKS'
-        }
     }
 });
 
@@ -19,7 +16,7 @@ const Router = createSwitchNavigator({
     Test: Login
 },
     {
-        initialRouteName: 'Test',
+        initialRouteName: 'Home',
     },
 );
 
