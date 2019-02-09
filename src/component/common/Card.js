@@ -13,7 +13,7 @@ const styles = {
     constainerStyle: {
         elevation: 1,
         paddingHorizontal: 20,
-        paddingVertical: 10
+        paddingVertical: 5
     }
 }
 

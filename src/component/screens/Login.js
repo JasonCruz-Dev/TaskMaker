@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, StatusBar, Text, TextInput, TouchableOpacity, AsyncStorage } from 'react-native';
+import {
+    StyleSheet,
+    View, TouchableOpacity, TouchableWithoutFeedback,
+    StatusBar, SafeAreaView,
+    Text, TextInput,
+    AsyncStorage, Keyboard, KeyboardAvoidingView
+} from 'react-native';
 import firebase from 'firebase';
 import colors from 'res/colors';
 import { Feather } from '@expo/vector-icons';
@@ -43,22 +49,27 @@ class Login extends React.Component {
                     .catch((error) => console.log('create user error', error));
             });
     }
-
-    render() {
+    renderLogo() {
         return (
-            <View style={styles.container}>
-                <StatusBar
-                    backgroundColor={colors.backgroundColor}
-                    barStyle="dark-content"
-                />
-                <View style={styles.logo}>
-                    <Feather name='check-circle' size={40} color={colors.red} />
-                    <Text style={styles.text}>Task Maker</Text>
-                </View>
+            <KeyboardAvoidingView behavior='padding' style={{ flex: 1, paddingBottom: 10 }}>
+                <Card>
+                    <View style={styles.logo}>
+                        <Feather name='check-circle' size={40} color={colors.red} />
+                        <Text style={styles.text}>Task Maker</Text>
+                    </View>
+                </Card>
                 <Card>
                     <Text style={styles.hello}>Hello!</Text>
                     <Text style={styles.hello}>Let's start a better Life</Text>
                 </Card>
+
+
+            </KeyboardAvoidingView>
+        );
+    }
+    renderForm() {
+        return (
+            <KeyboardAvoidingView behavior='padding' style={{ flex: 1, paddingTop: 10 }}>
                 {this.state.login ? null :
                     <Card>
                         <TextInput
@@ -106,9 +117,25 @@ class Login extends React.Component {
                         <TouchableOpacity onPress={() => this.setState({ login: true })}>
                             <Text style={[styles.bottomText, { color: colors.red }]}>Log in</Text>
                         </TouchableOpacity>
+                    </View>}
+            </KeyboardAvoidingView>
+        );
+    }
+    render() {
+        return (
+            <SafeAreaView style={styles.container}>
+                <StatusBar
+                    backgroundColor={colors.backgroundColor}
+                    barStyle="dark-content"
+                />
+                <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
+                    <View style={styles.container}>
+                        {this.renderLogo()}
+                        {this.renderForm()}
+                        <View style={{ flex: 1 }} />
                     </View>
-                }
-            </View>
+                </TouchableWithoutFeedback>
+            </SafeAreaView>
         );
     }
 }
@@ -127,8 +154,6 @@ const styles = StyleSheet.create({
     logo: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 60,
-        marginLeft: 20
     },
     hello: {
         fontSize: 30,

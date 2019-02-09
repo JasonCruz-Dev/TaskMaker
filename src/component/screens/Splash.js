@@ -26,11 +26,11 @@ class Splash extends React.Component {
         if (userToken) {
             setTimeout(() => {
                 this.props.navigation.navigate('Home');
-            }, 1500);
+            }, 1000);
         } else {
             setTimeout(() => {
                 this.props.navigation.navigate('Auth');
-            }, 1500);
+            }, 1000);
         }
     }
 
