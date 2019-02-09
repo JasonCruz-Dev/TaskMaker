@@ -1,18 +1,47 @@
 import React from 'react';
-import { StyleSheet, View, StatusBar, Text, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, StatusBar, Text, TextInput, TouchableOpacity, AsyncStorage } from 'react-native';
+import firebase from 'firebase';
 import colors from 'res/colors';
 import { Feather } from '@expo/vector-icons';
 import { Card, Button } from '../common';
 
 class Login extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            login: true,
-            name: '',
-            email: '',
-            password: ''
+    state = {
+        login: true,
+        name: '',
+        email: '',
+        password: ''
+    }
+
+    async onLoginInPress() {
+        const { email, password } = this.state;
+        if (email === '' || password === '') { return }
+        try {
+            let promise = await firebase.auth().signInWithEmailAndPassword(email, password);
+            if (promise) {
+                await AsyncStorage.setItem('userToken', promise.user.uid);
+                this.props.navigation.navigate('Home');
+                console.log('promise', promise.user.uid);
+            }
+        } catch (error) {
+            console.log('error', error);
         }
+    }
+
+    async onSignUpPress() {
+        const { email, password, name } = this.state;
+        if (email === '' || password === '' || name === '') { return }
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then((promise) => console.log('user already exists'))
+            .catch(() => {
+                firebase.auth().createUserWithEmailAndPassword(email, password)
+                    .then(async (promise) => {
+                        await AsyncStorage.setItem('userToken', promise.user.uid);
+                        this.props.navigation.navigate('Home');
+                        console.log('create user success');
+                    })
+                    .catch((error) => console.log('create user error', error));
+            });
     }
 
     render() {
@@ -61,7 +90,9 @@ class Login extends React.Component {
                     />
                 </Card>
                 <Card>
-                    <Button>{this.state.login ? 'Log in' : 'Create Account'}</Button>
+                    <Button onPress={() => { this.state.login ? this.onLoginInPress() : this.onSignUpPress() }}>
+                        {this.state.login ? 'Log in' : 'Create Account'}
+                    </Button>
                 </Card>
                 {this.state.login ?
                     <View style={styles.bottomTextView}>

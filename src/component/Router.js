@@ -23,7 +23,7 @@ const Router = createSwitchNavigator({
     Test: AddTasks
 },
     {
-        initialRouteName: 'Home',
+        initialRouteName: 'Splash',
     },
 );
 

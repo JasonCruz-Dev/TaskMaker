@@ -30,7 +30,7 @@ class HomeScreen extends React.Component {
                 <DayCard onPress={() => this.onPress()}>Today</DayCard>
                 <DayCard onPress={() => this.onPress()}>Tomorrow</DayCard>
                 <DayCard onPress={() => this.onPress()}>Someday</DayCard>
-                <TouchableOpacity style={styles.actionButton}>
+                <TouchableOpacity style={styles.actionButton} onPress={() => this.onPress()}>
                     <Entypo name='plus' size={35} color={colors.backgroundColor} />
                 </TouchableOpacity>
             </View>
