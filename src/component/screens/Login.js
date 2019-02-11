@@ -16,38 +16,51 @@ class Login extends React.Component {
         login: true,
         name: '',
         email: '',
-        password: ''
+        password: '',
+        loading: false,
     }
 
     async onLoginInPress() {
         const { email, password } = this.state;
-        if (email === '' || password === '') { return }
+        if (email === '' || password === '') { return; }
+        this.setState({ loading: true });
         try {
             let promise = await firebase.auth().signInWithEmailAndPassword(email, password);
             if (promise) {
                 await AsyncStorage.setItem('userToken', promise.user.uid);
+                this.setState({ loading: false });
                 this.props.navigation.navigate('Home');
                 console.log('promise', promise.user.uid);
             }
         } catch (error) {
             console.log('error', error);
+            this.setState({ loading: false });
         }
+
     }
 
     async onSignUpPress() {
         const { email, password, name } = this.state;
-        if (email === '' || password === '' || name === '') { return }
+        if (email === '' || password === '' || name === '') { return; }
+        this.setState({ loading: true });
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((promise) => console.log('user already exists'))
             .catch(() => {
                 firebase.auth().createUserWithEmailAndPassword(email, password)
                     .then(async (promise) => {
-                        await AsyncStorage.setItem('userToken', promise.user.uid);
+                        const uid = promise.user.uid;
+                        await AsyncStorage.setItem('userToken', uid);
+                        await firebase.database().ref(`/users/${uid}/userinfo`).push({ name, email });
+                        this.setState({ loading: false });
                         this.props.navigation.navigate('Home');
                         console.log('create user success');
                     })
-                    .catch((error) => console.log('create user error', error));
+                    .catch((error) => {
+                        this.setState({ loading: false });
+                        console.log('create user error', error);
+                    });
             });
+
     }
     renderLogo() {
         return (
@@ -101,7 +114,9 @@ class Login extends React.Component {
                     />
                 </Card>
                 <Card>
-                    <Button onPress={() => { this.state.login ? this.onLoginInPress() : this.onSignUpPress() }}>
+                    <Button
+                        onPress={() => { this.state.login ? this.onLoginInPress() : this.onSignUpPress() }}
+                        loading={this.state.loading}>
                         {this.state.login ? 'Log in' : 'Create Account'}
                     </Button>
                 </Card>
@@ -146,7 +161,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.backgroundColor
     },
     text: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: '500',
         color: colors.red,
         marginHorizontal: 10,
@@ -156,12 +171,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     hello: {
-        fontSize: 30,
+        fontSize: 26,
         fontWeight: '500',
         color: colors.red,
     },
     textInput: {
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: '500',
         color: colors.red,
         padding: 5,
