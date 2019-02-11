@@ -1,16 +1,26 @@
 import React from 'react';
 import { StyleSheet, View, TextInput, } from 'react-native';
+import { connect } from "react-redux";
+import { addTasks } from '../../redux/actions';
 import colors from 'res/colors';
 
 class AddTasks extends React.Component {
     constructor() {
         super();
         this.state = {
-            task: ''
+            task: '',
+            day: ''
         }
     }
+    componentWillMount() {
+        let day = this.props.navigation.getParams('day');
+        this.setState({ day });
+    }
     onSubmitEditing() {
-        this.props.navigation.goBack();
+        if (this.state.task === '') { return this.props.navigation.goBack(); }
+        this.props.addTasks(this.state.task, this.state.day, () => {
+            this.props.navigation.goBack();
+        });
     }
     render() {
         return (
@@ -44,4 +54,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AddTasks;
+export default connect(null, { addTasks })(AddTasks);

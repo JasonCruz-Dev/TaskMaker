@@ -39,6 +39,10 @@ class Login extends React.Component {
 
     }
 
+    switchForm() {
+        this.setState({ login: !this.state.login });
+    }
+
     async onSignUpPress() {
         const { email, password, name } = this.state;
         if (email === '' || password === '' || name === '') { return; }
@@ -75,8 +79,6 @@ class Login extends React.Component {
                     <Text style={styles.hello}>Hello!</Text>
                     <Text style={styles.hello}>Let's start a better Life</Text>
                 </Card>
-
-
             </KeyboardAvoidingView>
         );
     }
@@ -120,19 +122,16 @@ class Login extends React.Component {
                         {this.state.login ? 'Log in' : 'Create Account'}
                     </Button>
                 </Card>
-                {this.state.login ?
-                    <View style={styles.bottomTextView}>
-                        <Text style={styles.bottomText}>Still without an account? </Text>
-                        <TouchableOpacity onPress={() => this.setState({ login: false })}>
-                            <Text style={[styles.bottomText, { color: colors.red }]}>Create one</Text>
-                        </TouchableOpacity>
-                    </View> :
-                    <View style={styles.bottomTextView}>
-                        <Text style={styles.bottomText}>Already have an account? </Text>
-                        <TouchableOpacity onPress={() => this.setState({ login: true })}>
-                            <Text style={[styles.bottomText, { color: colors.red }]}>Log in</Text>
-                        </TouchableOpacity>
-                    </View>}
+                <View style={styles.bottomTextView}>
+                    <Text style={styles.bottomText}>
+                        {this.state.login ? 'Still without an account?' : 'Already have an account?'}
+                    </Text>
+                    <TouchableOpacity onPress={() => this.switchForm()}>
+                        <Text style={[styles.bottomText, { color: colors.red }]}>
+                            {this.state.login ? 'Create one' : 'Log in'}
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </KeyboardAvoidingView>
         );
     }

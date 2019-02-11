@@ -1,7 +1,9 @@
 import { ADD_TASK } from '../actions/types';
 
 const INITIAL_STATE = {
-    taskArray: null
+    tasksToday: null,
+    tasksTommorrow: null,
+    tasksSomeday: null
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -9,7 +11,15 @@ export default (state = INITIAL_STATE, action) => {
         case ADD_TASK:
             let newArray = state.taskArray;
             newArray.push(action.payload);
-            return { ...state, taskArray: newArray };
+            if (action.day === 'today') {
+                return { ...state, tasksToday: newArray };
+            }
+            if (action.day === 'tommorrow') {
+                return { ...state, tasksTommorrow: newArray };
+            }
+            if (action.day === 'someday') {
+                return { ...state, tasksSomeday: newArray };
+            }
 
         default:
             return state;

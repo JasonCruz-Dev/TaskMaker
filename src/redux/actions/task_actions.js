@@ -1,8 +1,9 @@
 import { ADD_TASK } from './types';
 
-export const addTasks = (text) => {
-    return {
+export const addTasks = (text, day, callback) => async dispatch => {
+    dispatch({
         type: ADD_TASK,
-        payload: text
-    }
+        payload: text, day
+    });
+    callback();
 };
