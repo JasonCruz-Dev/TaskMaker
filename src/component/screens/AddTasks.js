@@ -18,7 +18,8 @@ class AddTasks extends React.Component {
     }
     onSubmitEditing() {
         if (this.state.task === '') { return this.props.navigation.goBack(); }
-        this.props.addTasks(this.state.task, this.state.day, () => {
+        const { task, day } = this.state;
+        this.props.addTasks(task, day, () => {
             this.props.navigation.goBack();
         });
     }

@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StatusBar, FlatList } from 'react-native';
-import { DayCard, TaskRow } from '../common';
+import { View, TouchableOpacity, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
+import _ from 'lodash';
+import { DayCard, TaskRow } from '../common';
 import { Feather, Entypo, } from '@expo/vector-icons';
 import colors from 'res/colors';
 
@@ -17,25 +18,11 @@ class HomeScreen extends React.Component {
                 <Entypo name='dots-three-vertical' size={24} color={colors.red} />
             </TouchableOpacity>,
     }
-    state = {
-        data: ['task one', 'task two', 'task three'],
-        data2: ['task four', 'task five', 'task six']
-    }
+
     onPress(day) {
         this.props.navigation.navigate('AddTasks', { day });
     }
-    renderTaskList(data) {
-        return (
-            <FlatList
-                data={data}
-                initialNumToRender={4}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => {
-                    return <TaskRow>{item}</TaskRow>
-                }}
-            />
-        );
-    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -44,10 +31,11 @@ class HomeScreen extends React.Component {
                     barStyle="dark-content"
                 />
                 <DayCard onPress={() => this.onPress('today')}>Today</DayCard>
-                {this.renderTaskList(this.state.data)}
+                <TaskRow>{this.props.tasksToday}</TaskRow>
                 <DayCard onPress={() => this.onPress('tomorrow')}>Tomorrow</DayCard>
-                {this.renderTaskList(this.state.data2)}
+                <TaskRow>{this.props.tasksTomorrow}</TaskRow>
                 <DayCard onPress={() => this.onPress('someday')}>Someday</DayCard>
+                <TaskRow>{this.props.tasksSomeday}</TaskRow>
                 <TouchableOpacity style={styles.actionButton} onPress={() => this.onPress('today')}>
                     <Entypo name='plus' size={35} color={colors.backgroundColor} />
                 </TouchableOpacity>
