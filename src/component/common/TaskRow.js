@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import colors from 'res/colors';
 
-const DayCard = (props) => {
+const TaskRow = (props) => {
     return (
         <View style={styles.constainerStyle}>
-            <Text style={styles.dayText}>{props.children}</Text>
+            <Text style={styles.rowText}>{props.children}</Text>
             <TouchableOpacity onPress={props.onPress}>
-                <Entypo name='plus' size={30} color={colors.red} />
+                <AntDesign name='closecircleo' size={24} color={colors.black} />
             </TouchableOpacity>
         </View>
     );
@@ -17,15 +17,15 @@ const DayCard = (props) => {
 const styles = {
     constainerStyle: {
         elevation: 1,
-        padding: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 7,
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
-    dayText: {
-        fontSize: 24,
-        fontWeight: '500',
-        color: colors.red,
+    rowText: {
+        fontSize: 18,
+        color: colors.text,
     },
 }
 
-export { DayCard };
+export { TaskRow };

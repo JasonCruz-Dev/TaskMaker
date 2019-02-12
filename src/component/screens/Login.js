@@ -128,7 +128,7 @@ class Login extends React.Component {
                     </Text>
                     <TouchableOpacity onPress={() => this.switchForm()}>
                         <Text style={[styles.bottomText, { color: colors.red }]}>
-                            {this.state.login ? 'Create one' : 'Log in'}
+                            {this.state.login ? ' Create one' : ' Log in'}
                         </Text>
                     </TouchableOpacity>
                 </View>

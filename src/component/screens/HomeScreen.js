@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StatusBar } from 'react-native';
-import { DayCard } from '../common';
+import { View, Text, TouchableOpacity, StatusBar, FlatList } from 'react-native';
+import { DayCard, TaskRow } from '../common';
 import { connect } from 'react-redux';
 import { Feather, Entypo, } from '@expo/vector-icons';
 import colors from 'res/colors';
@@ -17,8 +17,24 @@ class HomeScreen extends React.Component {
                 <Entypo name='dots-three-vertical' size={24} color={colors.red} />
             </TouchableOpacity>,
     }
-    onPress() {
-        this.props.navigation.navigate('AddTasks');
+    state = {
+        data: ['task one', 'task two', 'task three'],
+        data2: ['task four', 'task five', 'task six']
+    }
+    onPress(day) {
+        this.props.navigation.navigate('AddTasks', { day });
+    }
+    renderTaskList(data) {
+        return (
+            <FlatList
+                data={data}
+                initialNumToRender={4}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ item }) => {
+                    return <TaskRow>{item}</TaskRow>
+                }}
+            />
+        );
     }
     render() {
         return (
@@ -27,10 +43,12 @@ class HomeScreen extends React.Component {
                     backgroundColor={colors.backgroundColor}
                     barStyle="dark-content"
                 />
-                <DayCard onPress={() => this.onPress()}>Today</DayCard>
-                <DayCard onPress={() => this.onPress()}>Tomorrow</DayCard>
-                <DayCard onPress={() => this.onPress()}>Someday</DayCard>
-                <TouchableOpacity style={styles.actionButton} onPress={() => this.onPress()}>
+                <DayCard onPress={() => this.onPress('today')}>Today</DayCard>
+                {this.renderTaskList(this.state.data)}
+                <DayCard onPress={() => this.onPress('tomorrow')}>Tomorrow</DayCard>
+                {this.renderTaskList(this.state.data2)}
+                <DayCard onPress={() => this.onPress('someday')}>Someday</DayCard>
+                <TouchableOpacity style={styles.actionButton} onPress={() => this.onPress('today')}>
                     <Entypo name='plus' size={35} color={colors.backgroundColor} />
                 </TouchableOpacity>
             </View>
@@ -41,7 +59,7 @@ class HomeScreen extends React.Component {
 const styles = {
     container: {
         flex: 1,
-        backgroundColor: colors.backgroundColor
+        backgroundColor: colors.backgroundColor,
     },
     actionButton: {
         position: 'absolute',
@@ -49,12 +67,14 @@ const styles = {
         backgroundColor: colors.red,
         borderRadius: 30,
         bottom: 30, right: 30,
-    }
+    },
 };
 
 const mapStateToProps = state => {
     return {
-        taskArray: state.tasks.taskArray
+        tasksToday: state.tasks.tasksToday,
+        tasksTomorrow: state.tasks.tasksTomorrow,
+        tasksSomeday: state.tasks.tasksSomeday
     };
 }
 

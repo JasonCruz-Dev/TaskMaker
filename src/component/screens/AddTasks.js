@@ -13,7 +13,7 @@ class AddTasks extends React.Component {
         }
     }
     componentWillMount() {
-        let day = this.props.navigation.getParams('day');
+        let day = this.props.navigation.getParam('day');
         this.setState({ day });
     }
     onSubmitEditing() {
