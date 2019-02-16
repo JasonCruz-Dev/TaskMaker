@@ -68,7 +68,7 @@ class Login extends React.Component {
     }
     renderLogo() {
         return (
-            <KeyboardAvoidingView behavior='padding' style={{ flex: 1, paddingBottom: 10 }}>
+            <KeyboardAvoidingView behavior='padding' style={{ paddingVertical: 10, }}>
                 <Card>
                     <View style={styles.logo}>
                         <Feather name='check-circle' size={40} color={colors.red} />
@@ -84,7 +84,7 @@ class Login extends React.Component {
     }
     renderForm() {
         return (
-            <KeyboardAvoidingView behavior='padding' style={{ flex: 1, paddingTop: 10 }}>
+            <KeyboardAvoidingView behavior='padding' style={{ paddingVertical: 20, }}>
                 {this.state.login ? null :
                     <Card>
                         <TextInput
@@ -116,22 +116,14 @@ class Login extends React.Component {
                     />
                 </Card>
                 <Card>
-                    <Button
-                        onPress={() => { this.state.login ? this.onLoginInPress() : this.onSignUpPress() }}
-                        loading={this.state.loading}>
-                        {this.state.login ? 'Log in' : 'Create Account'}
-                    </Button>
+                    <View style={{ paddingTop: 5 }}>
+                        <Button
+                            onPress={() => { this.state.login ? this.onLoginInPress() : this.onSignUpPress() }}
+                            loading={this.state.loading}>
+                            {this.state.login ? 'Log in' : 'Create Account'}
+                        </Button>
+                    </View>
                 </Card>
-                <View style={styles.bottomTextView}>
-                    <Text style={styles.bottomText}>
-                        {this.state.login ? 'Still without an account?' : 'Already have an account?'}
-                    </Text>
-                    <TouchableOpacity onPress={() => this.switchForm()}>
-                        <Text style={[styles.bottomText, { color: colors.red }]}>
-                            {this.state.login ? ' Create one' : ' Log in'}
-                        </Text>
-                    </TouchableOpacity>
-                </View>
             </KeyboardAvoidingView>
         );
     }
@@ -146,7 +138,16 @@ class Login extends React.Component {
                     <View style={styles.container}>
                         {this.renderLogo()}
                         {this.renderForm()}
-                        <View style={{ flex: 1 }} />
+                        <View style={styles.bottomTextView}>
+                            <Text style={styles.bottomText}>
+                                {this.state.login ? 'Still without an account? ' : 'Already have an account? '}
+                            </Text>
+                            <TouchableOpacity onPress={() => this.switchForm()}>
+                                <Text style={[styles.bottomText, { color: colors.red }]}>
+                                    {this.state.login ? 'Create one' : 'Log in'}
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </TouchableWithoutFeedback>
             </SafeAreaView>

@@ -13,7 +13,7 @@ class Splash extends React.Component {
     }
 
     componentWillMount() {
-        //this.logOut();
+        this.logOut();
     }
 
     async logOut() {
