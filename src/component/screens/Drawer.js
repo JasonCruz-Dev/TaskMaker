@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, } from 'react-native';
+import { StyleSheet, View, Text, } from 'react-native';
 import { connect } from "react-redux";
 import { } from '../../redux/actions';
 import colors from 'res/colors';
@@ -18,7 +18,7 @@ class Drawer extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-
+                <Text>HI Shad</Text>
             </View>
         );
     }

@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, TouchableOpacity, StatusBar, FlatList } from 'react-native';
+import { View, TouchableOpacity, StatusBar, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { DayCard, TaskRow } from '../common';
+import { DayCard, TaskRow, } from '../common';
 import { Feather, Entypo, } from '@expo/vector-icons';
 import colors from 'res/colors';
 
@@ -62,6 +62,11 @@ class HomeScreen extends React.Component {
                 <TouchableOpacity style={styles.actionButton} onPress={() => this.onPress('today')}>
                     <Entypo name='plus' size={35} color={colors.backgroundColor} />
                 </TouchableOpacity>
+                {/* <View style={styles.moreOptions}>
+                    <Text style={styles.moreOptionText}>Sync</Text>
+                    <Text style={styles.moreOptionText}>Theme</Text>
+                    <Text style={styles.moreOptionText}>Settings</Text>
+                </View> */}
             </View>
         );
     }
@@ -83,6 +88,19 @@ const styles = {
         fontSize: 18,
         color: colors.text,
     },
+    moreOptions: {
+        position: 'absolute', right: 10, top: 5,
+        justifyContent: 'center',
+        padding: 10, borderRadius: 5,
+        minWidth: 150,
+        backgroundColor: colors.backgroundColor,
+        elevation: 10
+    },
+    moreOptionText: {
+        fontSize: 16,
+        margin: 5,
+
+    }
 };
 
 const mapStateToProps = state => {

@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: '500',
         color: colors.red,
-        padding: 5,
+        paddingHorizontal: 5,
+        paddingVertical: 10,
         margin: 5,
         borderBottomWidth: 1,
         borderBottomColor: colors.red
