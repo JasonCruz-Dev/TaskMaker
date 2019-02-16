@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, StatusBar } from 'react-native';
+import { View, TouchableOpacity, StatusBar, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { DayCard, TaskRow } from '../common';
@@ -8,7 +8,6 @@ import colors from 'res/colors';
 
 class HomeScreen extends React.Component {
     static navigationOptions = {
-        headerTitle: 'ALL TASKS',
         headerLeft:
             <TouchableOpacity style={{ paddingHorizontal: 5 }}>
                 <Feather name='align-left' size={30} color={colors.red} />
@@ -23,19 +22,43 @@ class HomeScreen extends React.Component {
         this.props.navigation.navigate('AddTasks', { day });
     }
 
+    componentDidMount() {
+        console.log('mount', this.props.taskArray);
+    }
+
+    renderTasks(day) {
+        return (
+            <View>
+                <FlatList
+                    data={this.props.taskArray}
+                    initialNumToRender={4}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item }) => {
+                        console.log('item', item);
+                        if (_.isUndefined(item.day) || item.day !== day) { return; }
+                        return (
+                            <TaskRow>{item.text}</TaskRow>
+                        );
+                    }}
+                />
+            </View>
+        );
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 <StatusBar
+                    translucent
                     backgroundColor={colors.backgroundColor}
                     barStyle="dark-content"
                 />
                 <DayCard onPress={() => this.onPress('today')}>Today</DayCard>
-                <TaskRow>{this.props.tasksToday}</TaskRow>
+                {this.renderTasks('today')}
                 <DayCard onPress={() => this.onPress('tomorrow')}>Tomorrow</DayCard>
-                <TaskRow>{this.props.tasksTomorrow}</TaskRow>
+                {this.renderTasks('tomorrow')}
                 <DayCard onPress={() => this.onPress('someday')}>Someday</DayCard>
-                <TaskRow>{this.props.tasksSomeday}</TaskRow>
+                {this.renderTasks('someday')}
                 <TouchableOpacity style={styles.actionButton} onPress={() => this.onPress('today')}>
                     <Entypo name='plus' size={35} color={colors.backgroundColor} />
                 </TouchableOpacity>
@@ -56,13 +79,15 @@ const styles = {
         borderRadius: 30,
         bottom: 30, right: 30,
     },
+    rowText: {
+        fontSize: 18,
+        color: colors.text,
+    },
 };
 
 const mapStateToProps = state => {
     return {
-        tasksToday: state.tasks.tasksToday,
-        tasksTomorrow: state.tasks.tasksTomorrow,
-        tasksSomeday: state.tasks.tasksSomeday
+        taskArray: state.tasks.taskArray
     };
 }
 

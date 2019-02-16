@@ -29,6 +29,7 @@ class AddTasks extends React.Component {
                 <TextInput
                     placeholder="Enter your task here"
                     placeholderTextColor={colors.lightRed}
+                    autoFocus
                     style={styles.textInput}
                     value={this.state.task}
                     onChangeText={(task) => this.setState({ task })}

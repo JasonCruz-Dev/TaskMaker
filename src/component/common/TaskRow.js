@@ -1,26 +1,15 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import colors from 'res/colors';
 
 const TaskRow = (props) => {
     return (
-        <View>
-            <FlatList
-                data={props.children}
-                initialNumToRender={4}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => {
-                    return (
-                        <View style={styles.constainerStyle}>
-                            <Text style={styles.rowText}>{item}</Text>
-                            <TouchableOpacity onPress={props.onPress}>
-                                <AntDesign name='closecircleo' size={24} color={colors.black} />
-                            </TouchableOpacity>
-                        </View>
-                    );
-                }}
-            />
+        <View style={styles.constainerStyle}>
+            <Text style={styles.rowText}>{props.children}</Text>
+            <TouchableOpacity onPress={props.onPress}>
+                <AntDesign name='closecircleo' size={24} color={colors.black} />
+            </TouchableOpacity>
         </View>
     );
 }

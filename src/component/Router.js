@@ -7,6 +7,9 @@ import AddTasks from 'screens/AddTasks';
 const HomeStackNavigator = createStackNavigator({
     HomeScreen: {
         screen: HomeScreen,
+        navigationOptions: {
+            headerTitle: 'ALL TASKS',
+        }
     },
     AddTasks: {
         screen: AddTasks,
