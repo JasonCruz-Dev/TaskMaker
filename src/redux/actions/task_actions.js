@@ -1,4 +1,4 @@
-import { ADD_TASK } from './types';
+import { ADD_TASK, MARK_DONE } from './types';
 
 export const addTasks = (text, day, callback) => async dispatch => {
     let collection = {};
@@ -9,4 +9,11 @@ export const addTasks = (text, day, callback) => async dispatch => {
         payload: collection
     });
     callback();
+};
+
+export const markDone = (task) => async dispatch => {
+    dispatch({
+        type: MARK_DONE,
+        payload: task
+    });
 };

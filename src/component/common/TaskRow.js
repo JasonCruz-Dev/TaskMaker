@@ -6,7 +6,7 @@ import colors from 'res/colors';
 const TaskRow = (props) => {
     return (
         <View style={styles.constainerStyle}>
-            <Text style={styles.rowText}>{props.children}</Text>
+            <Text style={[styles.rowText, props.done ? { textDecorationLine: 'line-through', color: '#909090' } : null]}>{props.children}</Text>
             <TouchableOpacity onPress={props.onPress}>
                 <AntDesign name='closecircleo' size={24} color={colors.black} />
             </TouchableOpacity>

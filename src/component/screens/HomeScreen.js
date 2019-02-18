@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, TouchableOpacity, StatusBar, FlatList, Text } from 'react-native';
+import { View, TouchableOpacity, StatusBar, FlatList, } from 'react-native';
 import { connect } from 'react-redux';
+import { markDone } from '../../redux/actions';
 import _ from 'lodash';
 import { DayCard, TaskRow, } from '../common';
 import { Feather, Entypo, } from '@expo/vector-icons';
@@ -34,10 +35,27 @@ class HomeScreen extends React.Component {
                     initialNumToRender={4}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item }) => {
-                        console.log('item', item);
                         if (_.isUndefined(item.day) || item.day !== day) { return; }
                         return (
-                            <TaskRow>{item.text}</TaskRow>
+                            <TaskRow onPress={() => this.props.markDone(item)}>{item.text}</TaskRow>
+                        );
+                    }}
+                />
+            </View>
+        );
+    }
+
+    renderCompletedTasks(day) {
+        return (
+            <View>
+                <FlatList
+                    data={this.props.taskDoneArray}
+                    initialNumToRender={4}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item }) => {
+                        if (_.isUndefined(item.day) || item.day !== day) { return; }
+                        return (
+                            <TaskRow done>{item.text}</TaskRow>
                         );
                     }}
                 />
@@ -55,10 +73,13 @@ class HomeScreen extends React.Component {
                 />
                 <DayCard onPress={() => this.onPress('today')}>Today</DayCard>
                 {this.renderTasks('today')}
+                {this.renderCompletedTasks('today')}
                 <DayCard onPress={() => this.onPress('tomorrow')}>Tomorrow</DayCard>
                 {this.renderTasks('tomorrow')}
+                {this.renderCompletedTasks('tomorrow')}
                 <DayCard onPress={() => this.onPress('someday')}>Someday</DayCard>
                 {this.renderTasks('someday')}
+                {this.renderCompletedTasks('someday')}
                 <TouchableOpacity style={styles.actionButton} onPress={() => this.onPress('today')}>
                     <Entypo name='plus' size={35} color={colors.backgroundColor} />
                 </TouchableOpacity>
@@ -105,8 +126,9 @@ const styles = {
 
 const mapStateToProps = state => {
     return {
-        taskArray: state.tasks.taskArray
+        taskArray: state.tasks.taskArray,
+        taskDoneArray: state.tasks.taskDoneArray
     };
 }
 
-export default connect(mapStateToProps, {})(HomeScreen);
+export default connect(mapStateToProps, { markDone })(HomeScreen);
