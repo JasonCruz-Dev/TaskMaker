@@ -24,6 +24,7 @@ const styles = {
     dayText: {
         fontSize: 24,
         fontWeight: '500',
+        fontFamily: 'montserrat',
         color: colors.red,
     },
 }

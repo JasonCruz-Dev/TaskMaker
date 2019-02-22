@@ -33,7 +33,8 @@ const styles = {
         fontSize: 18,
         color: colors.text,
         paddingHorizontal: 10,
-        flex: 1
+        flex: 1,
+        fontFamily: 'open-sans'
     },
 }
 

@@ -9,6 +9,9 @@ import config from './src/networking/firebase-config';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      fontLoaded: false
+    }
   }
   componentWillMount() {
     firebase.initializeApp(config);
@@ -17,14 +20,16 @@ export default class App extends React.Component {
     Font.loadAsync({
       'open-sans': require('./assets/OpenSans-Regular.ttf'),
       'montserrat': require('./assets/Montserrat-Regular.ttf'),
-    });
+    }).then(() => this.setState({ fontLoaded: true }));
   }
 
   render() {
     return (
-      <Provider store={store}>
-        <Router />
-      </Provider>
+      this.state.fontLoaded ?
+        <Provider store={store}>
+          <Router />
+        </Provider>
+        : null
     );
   }
 }
