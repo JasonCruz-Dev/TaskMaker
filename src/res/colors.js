@@ -17,7 +17,8 @@ const colors = {
     red: '#da304c',
     lightRed: '#ec93a2',
     lightGrey: '#d5d7d8',
-    darkGrey: '#62676a'
+    darkGrey: '#62676a',
+    grey: '#909090'
 }
 
 export default colors;

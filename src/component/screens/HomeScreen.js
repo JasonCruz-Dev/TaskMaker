@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, StatusBar, FlatList, } from 'react-native';
 import { connect } from 'react-redux';
-import { markDone } from '../../redux/actions';
+import { markDone, undoDone, deleteTask } from '../../redux/actions';
 import _ from 'lodash';
 import { DayCard, TaskRow, } from '../common';
 import { Feather, Entypo, } from '@expo/vector-icons';
@@ -55,7 +55,12 @@ class HomeScreen extends React.Component {
                     renderItem={({ item }) => {
                         if (_.isUndefined(item.day) || item.day !== day) { return; }
                         return (
-                            <TaskRow done>{item.text}</TaskRow>
+                            <TaskRow
+                                done
+                                onClose={() => this.props.deleteTask(item)}
+                                onCheckPress={() => this.props.undoDone(item)}>
+                                {item.text}
+                            </TaskRow>
                         );
                     }}
                 />
@@ -131,4 +136,4 @@ const mapStateToProps = state => {
     };
 }
 
-export default connect(mapStateToProps, { markDone })(HomeScreen);
+export default connect(mapStateToProps, { markDone, undoDone, deleteTask })(HomeScreen);
