@@ -1,8 +1,8 @@
 import { ADD_TASK, MARK_DONE, UNDO_DONE, DELETE_TASK } from '../actions/types';
 
 const INITIAL_STATE = {
-    taskArray: [{ "text": "New Task", "day": "today" }],
-    taskDoneArray: [{ "text": "Done Task", "day": "today" }]
+    taskArray: [],
+    taskDoneArray: []
 };
 
 export default (state = INITIAL_STATE, action) => {
