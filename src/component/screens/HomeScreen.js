@@ -11,11 +11,11 @@ class HomeScreen extends React.Component {
     static navigationOptions = {
         headerLeft:
             <TouchableOpacity style={{ paddingHorizontal: 5 }}>
-                <Feather name='align-left' size={30} color={colors.red} />
+                <Feather name='align-left' size={24} color={colors.red} />
             </TouchableOpacity>,
         headerRight:
             <TouchableOpacity style={{ paddingHorizontal: 5 }}>
-                <Entypo name='dots-three-vertical' size={24} color={colors.red} />
+                <Entypo name='dots-three-vertical' size={20} color={colors.red} />
             </TouchableOpacity>,
     }
 
@@ -86,7 +86,7 @@ class HomeScreen extends React.Component {
                 {this.renderTasks('someday')}
                 {this.renderCompletedTasks('someday')}
                 <TouchableOpacity style={styles.actionButton} onPress={() => this.onPress('today')}>
-                    <Entypo name='plus' size={35} color={colors.backgroundColor} />
+                    <Entypo name='plus' size={30} color={colors.backgroundColor} />
                 </TouchableOpacity>
                 {/* <View style={styles.moreOptions}>
                     <Text style={styles.moreOptionText}>Sync</Text>
@@ -108,7 +108,7 @@ const styles = {
         padding: 10,
         backgroundColor: colors.red,
         borderRadius: 30,
-        bottom: 30, right: 30,
+        bottom: 25, right: 25,
     },
     rowText: {
         fontSize: 18,

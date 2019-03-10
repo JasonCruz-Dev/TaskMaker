@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.backgroundColor
     },
     textInput: {
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: '500',
         color: colors.red,
         paddingHorizontal: 5,

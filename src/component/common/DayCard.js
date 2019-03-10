@@ -8,7 +8,7 @@ const DayCard = (props) => {
         <View style={styles.constainerStyle}>
             <Text style={styles.dayText}>{props.children}</Text>
             <TouchableOpacity onPress={props.onPress}>
-                <Entypo name='plus' size={30} color={colors.red} />
+                <Entypo name='plus' size={24} color={colors.red} />
             </TouchableOpacity>
         </View>
     );
@@ -22,7 +22,7 @@ const styles = {
         justifyContent: 'space-between'
     },
     dayText: {
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: '500',
         fontFamily: 'montserrat',
         color: colors.red,
