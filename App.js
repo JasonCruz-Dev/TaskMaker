@@ -3,8 +3,12 @@ import firebase from 'firebase';
 import Router from './src/component/Router';
 import { Provider } from 'react-redux';
 import { Font } from 'expo';
-import store from './src/redux/store';
+import configureStore from './src/redux/store';
+// import store from './src/redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 import config from './src/networking/firebase-config';
+
+const { persistor, store } = configureStore();
 
 export default class App extends React.Component {
   constructor(props) {
@@ -27,7 +31,9 @@ export default class App extends React.Component {
     return (
       this.state.fontLoaded ?
         <Provider store={store}>
-          <Router />
+          <PersistGate loading={null} persistor={persistor}>
+            <Router />
+          </PersistGate>
         </Provider>
         : null
     );
