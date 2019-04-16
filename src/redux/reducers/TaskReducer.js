@@ -1,4 +1,4 @@
-import { ADD_TASK, MARK_DONE, UNDO_DONE, DELETE_TASK } from '../actions/types';
+import { ADD_TASK, MARK_DONE, UNDO_DONE, DELETE_TASK, CLEAR_COMPLETED } from '../actions/types';
 
 const INITIAL_STATE = {
     taskArray: [],
@@ -31,7 +31,9 @@ export default (state = INITIAL_STATE, action) => {
         case DELETE_TASK:
             const newArray = state.taskArray.filter(task => task.description !== action.payload.description);
             return { ...state, taskArray: newArray };
-
+        case CLEAR_COMPLETED:
+            const unfinishedTask = state.taskArray.filter(task => task.completed === false);
+            return { ...state, taskArray: unfinishedTask }
         default:
             return state;
     }

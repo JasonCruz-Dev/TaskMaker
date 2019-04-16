@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, StatusBar, FlatList, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import { markDone, undoDone, deleteTask } from '../../redux/actions';
+import { markDone, undoDone, deleteTask, clearCompleted } from '../../redux/actions';
 import _ from 'lodash';
 import { DayCard, TaskRow, MoreOptionItem } from '../common';
 import Header from '../common/Header';
@@ -44,12 +44,16 @@ class HomeScreen extends React.Component {
                 <MoreOptionItem icon={
                     <MaterialIcons name='style' size={18} color={colors.red} />
                 }>Theme</MoreOptionItem>
-                <MoreOptionItem icon={
-                    <AntDesign name='closecircleo' size={15} color={colors.red} />
-                }>Clear completed</MoreOptionItem>
+                <MoreOptionItem
+                    icon={
+                        <AntDesign name='closecircleo' size={15} color={colors.red} />
+                    }
+                    onPress={() => this.props.clearCompleted()}
+                >Clear completed</MoreOptionItem>
                 <MoreOptionItem icon={
                     <AntDesign name='setting' size={18} color={colors.red} />
-                }>Settings</MoreOptionItem>
+                }
+                >Settings</MoreOptionItem>
             </View>
         );
     }
@@ -192,4 +196,4 @@ const mapStateToProps = state => {
     };
 }
 
-export default connect(mapStateToProps, { markDone, undoDone, deleteTask })(HomeScreen);
+export default connect(mapStateToProps, { markDone, undoDone, deleteTask, clearCompleted })(HomeScreen);
