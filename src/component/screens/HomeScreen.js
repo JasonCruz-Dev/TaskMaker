@@ -29,7 +29,7 @@ class HomeScreen extends React.Component {
                         onPress={() => this.setState({ showSidePanel: false })}>
                         <AntDesign name='close' size={26} color={colors.red} />
                     </TouchableOpacity>
-                }>List</Header>
+                }>My List</Header>
             </View>
         );
     }
@@ -40,6 +40,7 @@ class HomeScreen extends React.Component {
             <View style={styles.moreOptions}>
                 <Text style={styles.moreOptionText}>Sync</Text>
                 <Text style={styles.moreOptionText}>Theme</Text>
+                <Text style={styles.moreOptionText}>Clear completed</Text>
                 <Text style={styles.moreOptionText}>Settings</Text>
             </View>
         );
