@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, TextInput, } from 'react-native';
 import { connect } from "react-redux";
 import { addTasks } from '../../redux/actions';
+import Header from '../common/Header';
 import colors from 'res/colors';
 
 class AddTasks extends React.Component {
@@ -26,6 +27,7 @@ class AddTasks extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <Header backEnabled>ADD TASK</Header>
                 <TextInput
                     placeholder="Enter your task here"
                     placeholderTextColor={colors.lightRed}

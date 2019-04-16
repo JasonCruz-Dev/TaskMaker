@@ -17,7 +17,11 @@ const HomeStackNavigator = createStackNavigator({
             headerTitle: 'Create New task'
         }
     }
-});
+}, {
+        defaultNavigationOptions: {
+            header: null
+        }
+    });
 
 const Router = createSwitchNavigator({
     Splash: Splash,

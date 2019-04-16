@@ -7,7 +7,7 @@ const DayCard = (props) => {
     return (
         <View style={styles.constainerStyle}>
             <Text style={styles.dayText}>{props.children}</Text>
-            <TouchableOpacity onPress={props.onPress}>
+            <TouchableOpacity onPress={props.onPress} style={styles.icon}>
                 <Entypo name='plus' size={24} color={colors.red} />
             </TouchableOpacity>
         </View>
@@ -27,6 +27,9 @@ const styles = {
         fontFamily: 'montserrat',
         color: colors.red,
     },
+    icon: {
+        padding: 5
+    }
 }
 
 export { DayCard };
