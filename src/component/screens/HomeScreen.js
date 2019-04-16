@@ -27,47 +27,6 @@ class HomeScreen extends React.Component {
         console.log('mount', this.props.taskArray);
     }
 
-    renderTasks(day) {
-        return (
-            <View>
-                <FlatList
-                    data={this.props.taskArray}
-                    initialNumToRender={4}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }) => {
-                        if (_.isUndefined(item.day) || item.day !== day) { return; }
-                        return (
-                            <TaskRow onPress={() => this.props.markDone(item)}>{item.text}</TaskRow>
-                        );
-                    }}
-                />
-            </View>
-        );
-    }
-
-    renderCompletedTasks(day) {
-        return (
-            <View>
-                <FlatList
-                    data={this.props.taskDoneArray}
-                    initialNumToRender={4}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }) => {
-                        if (_.isUndefined(item.day) || item.day !== day) { return; }
-                        return (
-                            <TaskRow
-                                done
-                                onClose={() => this.props.deleteTask(item)}
-                                onCheckPress={() => this.props.undoDone(item)}>
-                                {item.text}
-                            </TaskRow>
-                        );
-                    }}
-                />
-            </View>
-        );
-    }
-
     render() {
         return (
             <View style={styles.container}>
@@ -77,14 +36,65 @@ class HomeScreen extends React.Component {
                     barStyle="dark-content"
                 />
                 <DayCard onPress={() => this.onPress('today')}>Today</DayCard>
-                {this.renderTasks('today')}
-                {this.renderCompletedTasks('today')}
+                <View>
+                    <FlatList
+                        data={this.props.taskArray.filter(task => task.day === 'today')}
+                        initialNumToRender={4}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) => {
+                            console.log('render task today');
+                            return (
+                                <TaskRow
+                                    done={item.completed}
+                                    onPress={() => this.props.markDone(item)}
+                                    onClose={() => this.props.deleteTask(item)}
+                                    onCheckPress={() => this.props.undoDone(item)}>
+                                    {item.description}
+                                </TaskRow>
+                            );
+                        }}
+                    />
+                </View>
                 <DayCard onPress={() => this.onPress('tomorrow')}>Tomorrow</DayCard>
-                {this.renderTasks('tomorrow')}
-                {this.renderCompletedTasks('tomorrow')}
+                <View>
+                    <FlatList
+                        data={this.props.taskArray.filter(task => task.day === 'tomorrow')}
+                        initialNumToRender={4}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) => {
+                            console.log('render task tomorrow');
+                            return (
+                                <TaskRow
+                                    done={item.completed}
+                                    onPress={() => this.props.markDone(item)}
+                                    onClose={() => this.props.deleteTask(item)}
+                                    onCheckPress={() => this.props.undoDone(item)}>
+                                    {item.description}
+                                </TaskRow>
+                            );
+                        }}
+                    />
+                </View>
                 <DayCard onPress={() => this.onPress('someday')}>Someday</DayCard>
-                {this.renderTasks('someday')}
-                {this.renderCompletedTasks('someday')}
+                <View>
+                    <FlatList
+                        data={this.props.taskArray.filter(task => task.day === 'someday')}
+                        initialNumToRender={4}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) => {
+                            console.log('render task someday');
+                            return (
+                                <TaskRow
+                                    done={item.completed}
+                                    onPress={() => this.props.markDone(item)}
+                                    onClose={() => this.props.deleteTask(item)}
+                                    onCheckPress={() => this.props.undoDone(item)}>
+                                    {item.description}
+                                </TaskRow>
+                            );
+                        }}
+                    />
+                </View>
                 <TouchableOpacity style={styles.actionButton} onPress={() => this.onPress('today')}>
                     <Entypo name='plus' size={30} color={colors.backgroundColor} />
                 </TouchableOpacity>
@@ -132,7 +142,6 @@ const styles = {
 const mapStateToProps = state => {
     return {
         taskArray: state.tasks.taskArray,
-        taskDoneArray: state.tasks.taskDoneArray
     };
 }
 

@@ -1,9 +1,10 @@
 import { ADD_TASK, MARK_DONE, UNDO_DONE, DELETE_TASK } from './types';
 
-export const addTasks = (text, day, callback) => async dispatch => {
+export const addTasks = (task, day, callback) => async dispatch => {
     let collection = {};
-    collection.text = text;
+    collection.description = task;
     collection.day = day;
+    collection.completed = false;
     dispatch({
         type: ADD_TASK,
         payload: collection

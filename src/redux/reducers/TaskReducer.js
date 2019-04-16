@@ -2,7 +2,6 @@ import { ADD_TASK, MARK_DONE, UNDO_DONE, DELETE_TASK } from '../actions/types';
 
 const INITIAL_STATE = {
     taskArray: [],
-    taskDoneArray: []
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -12,19 +11,26 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, taskArray: array };
 
         case MARK_DONE:
-            const doneArray = state.taskDoneArray.concat(action.payload);
-            const newTaskArray = state.taskArray.filter(task => task !== action.payload);
-            console.log('new array', newTaskArray);
-            return { ...state, taskArray: newTaskArray, taskDoneArray: doneArray };
+            let filteredTasks = state.taskArray.filter(task => task.description !== action.payload.description);
+            filteredTasks.push({
+                description: action.payload.description,
+                day: action.payload.day,
+                completed: true
+            });
+            return { ...state, taskArray: filteredTasks };
 
         case UNDO_DONE:
-            const oldArray = [action.payload, ...state.taskArray];
-            const newDoneArray = state.taskDoneArray.filter(task => task !== action.payload);
-            return { ...state, taskArray: oldArray, taskDoneArray: newDoneArray };
+            let filteredUndoTasks = state.taskArray.filter(task => task.description !== action.payload.description);
+            filteredUndoTasks.unshift({
+                description: action.payload.description,
+                day: action.payload.day,
+                completed: false
+            });
+            return { ...state, taskArray: filteredUndoTasks };
 
         case DELETE_TASK:
-            const newArray = state.taskDoneArray.filter(task => task !== action.payload);
-            return { ...state, taskDoneArray: newArray };
+            const newArray = state.taskArray.filter(task => task.description !== action.payload.description);
+            return { ...state, taskArray: newArray };
 
         default:
             return state;
