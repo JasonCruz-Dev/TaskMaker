@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, TouchableOpacity, StatusBar, FlatList, Text, TouchableWithoutFeedback } from 'react-native';
+import { View, TouchableOpacity, StatusBar, FlatList, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { markDone, undoDone, deleteTask } from '../../redux/actions';
 import _ from 'lodash';
-import { DayCard, TaskRow, } from '../common';
+import { DayCard, TaskRow, MoreOptionItem } from '../common';
 import Header from '../common/Header';
-import { Feather, Entypo, AntDesign } from '@expo/vector-icons';
+import { Feather, Entypo, AntDesign, MaterialIcons } from '@expo/vector-icons';
 import colors from 'res/colors';
 
 class HomeScreen extends React.Component {
@@ -38,10 +38,18 @@ class HomeScreen extends React.Component {
         if (!this.state.showMoreOption) { return; }
         return (
             <View style={styles.moreOptions}>
-                <Text style={styles.moreOptionText}>Sync</Text>
-                <Text style={styles.moreOptionText}>Theme</Text>
-                <Text style={styles.moreOptionText}>Clear completed</Text>
-                <Text style={styles.moreOptionText}>Settings</Text>
+                <MoreOptionItem icon={
+                    <AntDesign name='sync' size={15} color={colors.red} />
+                }>Sync</MoreOptionItem>
+                <MoreOptionItem icon={
+                    <MaterialIcons name='style' size={18} color={colors.red} />
+                }>Theme</MoreOptionItem>
+                <MoreOptionItem icon={
+                    <AntDesign name='closecircleo' size={15} color={colors.red} />
+                }>Clear completed</MoreOptionItem>
+                <MoreOptionItem icon={
+                    <AntDesign name='setting' size={18} color={colors.red} />
+                }>Settings</MoreOptionItem>
             </View>
         );
     }
