@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, StatusBar, FlatList, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, TouchableOpacity, StatusBar, FlatList, TouchableWithoutFeedback, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { markDone, undoDone, deleteTask, clearCompleted } from '../../redux/actions';
 import _ from 'lodash';
@@ -7,12 +7,14 @@ import { DayCard, TaskRow, MoreOptionItem } from '../common';
 import Header from '../common/Header';
 import { Feather, Entypo, AntDesign, MaterialIcons } from '@expo/vector-icons';
 import colors from 'res/colors';
+import { TagView } from '../common/TagView';
 
 class HomeScreen extends React.Component {
 
     state = {
         showSidePanel: false,
-        showMoreOption: false
+        showMoreOption: false,
+        width: Dimensions.get('window').width
     }
 
     onPress(day) {
@@ -21,6 +23,7 @@ class HomeScreen extends React.Component {
 
     renderSidePanel() {
         if (!this.state.showSidePanel) { return; }
+        let { listArray } = this.props;
         return (
             <View style={styles.sidePanel}>
                 <Header right={
@@ -30,6 +33,15 @@ class HomeScreen extends React.Component {
                         <AntDesign name='close' size={26} color={colors.red} />
                     </TouchableOpacity>
                 }>My List</Header>
+                <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
+                    {listArray.map((element, index) => {
+                        return (
+                            <View key={index} style={{ aspectRatio: 1, width: this.state.width / 2, }}>
+                                <TagView>{element}</TagView>
+                            </View>
+                        );
+                    })}
+                </View>
             </View>
         );
     }
@@ -193,6 +205,7 @@ const styles = {
 const mapStateToProps = state => {
     return {
         taskArray: state.tasks.taskArray,
+        listArray: state.tasks.listArray
     };
 }
 
