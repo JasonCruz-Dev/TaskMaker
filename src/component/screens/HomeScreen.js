@@ -5,9 +5,8 @@ import { markDone, undoDone, deleteTask, clearCompleted } from '../../redux/acti
 import _ from 'lodash';
 import { DayCard, TaskRow, MoreOptionItem } from '../common';
 import Header from '../common/Header';
-import { Feather, Entypo, AntDesign, MaterialIcons } from '@expo/vector-icons';
+import { Entypo, AntDesign, MaterialIcons } from '@expo/vector-icons';
 import colors from 'res/colors';
-import { TagView } from '../common/TagView';
 
 class HomeScreen extends React.Component {
 
@@ -19,31 +18,6 @@ class HomeScreen extends React.Component {
 
     onPress(day) {
         this.props.navigation.navigate('AddTasks', { day });
-    }
-
-    renderSidePanel() {
-        if (!this.state.showSidePanel) { return; }
-        let { listArray } = this.props;
-        return (
-            <View style={styles.sidePanel}>
-                <Header right={
-                    <TouchableOpacity
-                        activeOpacity={0.5}
-                        onPress={() => this.setState({ showSidePanel: false })}>
-                        <AntDesign name='close' size={26} color={colors.red} />
-                    </TouchableOpacity>
-                }>My List</Header>
-                <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
-                    {listArray.map((element, index) => {
-                        return (
-                            <View key={index} style={{ aspectRatio: 1, width: this.state.width / 2, }}>
-                                <TagView>{element}</TagView>
-                            </View>
-                        );
-                    })}
-                </View>
-            </View>
-        );
     }
 
     renderMoreOption() {
@@ -78,11 +52,6 @@ class HomeScreen extends React.Component {
                     barStyle="light-content"
                 />
                 <Header
-                    left={
-                        <TouchableOpacity style={{ paddingHorizontal: 5 }} onPress={() => this.setState({ showSidePanel: true })}>
-                            <Feather name='align-left' size={24} color={colors.red} />
-                        </TouchableOpacity>
-                    }
                     right={
                         <TouchableOpacity style={{ paddingHorizontal: 5 }} onPress={() => this.setState({ showMoreOption: true })}>
                             <Entypo name='dots-three-vertical' size={20} color={colors.red} />
@@ -159,7 +128,6 @@ class HomeScreen extends React.Component {
                     </View>
                 </TouchableWithoutFeedback>
                 {this.renderMoreOption()}
-                {this.renderSidePanel()}
             </View>
         );
     }
@@ -205,7 +173,6 @@ const styles = {
 const mapStateToProps = state => {
     return {
         taskArray: state.tasks.taskArray,
-        listArray: state.tasks.listArray
     };
 }
 

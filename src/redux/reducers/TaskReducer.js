@@ -2,7 +2,6 @@ import { ADD_TASK, MARK_DONE, UNDO_DONE, DELETE_TASK, CLEAR_COMPLETED } from '..
 
 const INITIAL_STATE = {
     taskArray: [],
-    listArray: ['All Tasks', 'Personal', 'Work', 'Grocery',]
 };
 
 export default (state = INITIAL_STATE, action) => {
