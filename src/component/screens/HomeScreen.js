@@ -7,12 +7,14 @@ import { DayCard, TaskRow, MoreOptionItem } from '../common';
 import Header from '../common/Header';
 import { Entypo, AntDesign, MaterialIcons } from '@expo/vector-icons';
 import colors from 'res/colors';
+import { ThemeChoose } from '../common/ThemeChoose';
 
 class HomeScreen extends React.Component {
 
     state = {
-        showSidePanel: false,
+        showchooseThemeView: false,
         showMoreOption: false,
+        showThemeChooser: false,
         width: Dimensions.get('window').width
     }
 
@@ -27,19 +29,38 @@ class HomeScreen extends React.Component {
                 <MoreOptionItem icon={
                     <AntDesign name='sync' size={15} color={colors.red} />
                 }>Sync</MoreOptionItem>
-                <MoreOptionItem icon={
-                    <MaterialIcons name='style' size={18} color={colors.red} />
-                }>Theme</MoreOptionItem>
+                <MoreOptionItem
+                    icon={
+                        <MaterialIcons name='style' size={18} color={colors.red} />
+                    }
+                    onPress={() => {
+                        this.setState({ showMoreOption: false, showThemeChooser: true })
+                    }}
+                >Theme</MoreOptionItem>
                 <MoreOptionItem
                     icon={
                         <AntDesign name='closecircleo' size={15} color={colors.red} />
                     }
-                    onPress={() => this.props.clearCompleted()}
+                    onPress={() => {
+                        this.props.clearCompleted();
+                        this.setState({ showMoreOption: false })
+                    }}
                 >Clear completed</MoreOptionItem>
                 <MoreOptionItem icon={
                     <AntDesign name='setting' size={18} color={colors.red} />
                 }
                 >Settings</MoreOptionItem>
+            </View>
+        );
+    }
+
+    renderThemeChooser() {
+        if (!this.state.showThemeChooser) { return null; }
+        return (
+            <View style={styles.chooseThemeView}>
+                <ThemeChoose onPress={() => this.setState({ showThemeChooser: false })}>
+
+                </ThemeChoose>
             </View>
         );
     }
@@ -128,6 +149,7 @@ class HomeScreen extends React.Component {
                     </View>
                 </TouchableWithoutFeedback>
                 {this.renderMoreOption()}
+                {this.renderThemeChooser()}
             </View>
         );
     }
@@ -161,11 +183,13 @@ const styles = {
         fontSize: 16,
         margin: 5,
     },
-    sidePanel: {
+    chooseThemeView: {
         position: 'absolute',
         left: 0, top: 0,
         right: 0, bottom: 0,
-        backgroundColor: colors.backgroundColor,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.1)',
         elevation: 10
     }
 };
