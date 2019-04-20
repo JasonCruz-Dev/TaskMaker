@@ -18,6 +18,10 @@ class HomeScreen extends React.Component {
         width: Dimensions.get('window').width
     }
 
+    componentDidMount() {
+        console.log(this.props.theme);
+    }
+
     onPress(day) {
         this.props.navigation.navigate('AddTasks', { day });
     }
@@ -81,7 +85,9 @@ class HomeScreen extends React.Component {
                 >
                     ALL TASKS
                 </Header>
-                <DayCard onPress={() => this.onPress('today')}>Today</DayCard>
+                <DayCard
+                    color={this.props.theme.primaryColor}
+                    onPress={() => this.onPress('today')}>Today</DayCard>
                 <View>
                     <FlatList
                         data={this.props.taskArray.filter(task => task.day === 'today')}
@@ -143,7 +149,7 @@ class HomeScreen extends React.Component {
                                 }}
                             />
                         </View>
-                        <TouchableOpacity style={styles.actionButton} onPress={() => this.onPress('today')}>
+                        <TouchableOpacity style={[styles.actionButton, { backgroundColor: this.props.theme.primaryColor }]} onPress={() => this.onPress('today')}>
                             <Entypo name='plus' size={30} color={colors.backgroundColor} />
                         </TouchableOpacity>
                     </View>
@@ -163,7 +169,6 @@ const styles = {
     actionButton: {
         position: 'absolute',
         padding: 10,
-        backgroundColor: colors.red,
         borderRadius: 30,
         bottom: 25, right: 25,
     },
@@ -197,6 +202,7 @@ const styles = {
 const mapStateToProps = state => {
     return {
         taskArray: state.tasks.taskArray,
+        theme: state.tasks.theme
     };
 }
 

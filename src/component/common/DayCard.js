@@ -6,9 +6,9 @@ import colors from 'res/colors';
 const DayCard = (props) => {
     return (
         <View style={styles.constainerStyle}>
-            <Text style={styles.dayText}>{props.children}</Text>
+            <Text style={[styles.dayText, { color: props.color || colors.red }]}>{props.children}</Text>
             <TouchableOpacity onPress={props.onPress} style={styles.icon}>
-                <Entypo name='plus' size={24} color={colors.red} />
+                <Entypo name='plus' size={24} color={props.color || colors.red} />
             </TouchableOpacity>
         </View>
     );
@@ -25,7 +25,6 @@ const styles = {
         fontSize: 20,
         fontWeight: '500',
         fontFamily: 'montserrat',
-        color: colors.red,
     },
     icon: {
         padding: 5
