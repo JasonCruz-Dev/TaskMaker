@@ -16,10 +16,9 @@ export default class App extends React.Component {
       fontLoaded: false
     }
   }
-  componentWillMount() {
-    firebase.initializeApp(config);
-  }
+
   componentDidMount() {
+    firebase.initializeApp(config);
     Font.loadAsync({
       'open-sans': require('./assets/OpenSans-Regular.ttf'),
       'montserrat': require('./assets/Montserrat-Regular.ttf'),
