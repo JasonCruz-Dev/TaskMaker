@@ -1,13 +1,7 @@
 import { ADD_TASK, MARK_DONE, UNDO_DONE, DELETE_TASK, CLEAR_COMPLETED } from '../actions/types';
-import colors from '../../res/colors';
 
 const INITIAL_STATE = {
     taskArray: [],
-    theme: {
-        primaryColor: colors.green,
-        secondaryColor: colors.lightGreen,
-        backgroundColor: colors.backgroundColor
-    }
 };
 
 export default (state = INITIAL_STATE, action) => {
