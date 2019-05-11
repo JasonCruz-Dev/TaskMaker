@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, } from 'react-native';
 import { connect } from "react-redux";
 import { addTasks } from '../../redux/actions';
 import Header from '../common/Header';
-import colors from 'res/colors';
+import colors from 'res/colors.json';
 
 class AddTasks extends React.Component {
     constructor() {

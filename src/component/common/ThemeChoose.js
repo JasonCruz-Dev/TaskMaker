@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { FontAwesome } from "@expo/vector-icons";
-import colors from '../../res/colors';
-import fonts from '../../res/fonts';
+import colors from '../../res/colors.json';
+import fonts from '../../res/fonts.json';
 
 const ThemeChoose = (props) => {
     return (

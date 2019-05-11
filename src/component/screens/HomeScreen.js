@@ -6,7 +6,7 @@ import _ from 'lodash';
 import { DayCard, TaskRow, MoreOptionItem } from '../common';
 import Header from '../common/Header';
 import { Entypo, AntDesign, MaterialIcons } from '@expo/vector-icons';
-import colors from 'res/colors';
+import colors from 'res/colors.json';
 import { ThemeChoose } from '../common/ThemeChoose';
 
 class HomeScreen extends React.Component {

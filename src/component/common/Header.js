@@ -2,8 +2,8 @@ import React from 'react';
 import { View, TouchableOpacity, Text, PixelRatio, Dimensions, Platform } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { withNavigation } from 'react-navigation';
-import colors from 'res/colors';
-import fonts from 'res/fonts';
+import colors from 'res/colors.json';
+import fonts from 'res/fonts.json';
 const width = Dimensions.get('window').width;
 
 const calculateFontSize = (fontSize) => {

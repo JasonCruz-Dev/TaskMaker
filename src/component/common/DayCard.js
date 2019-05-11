@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
-import colors from 'res/colors';
+import colors from 'res/colors.json';
 
 const DayCard = (props) => {
     return (

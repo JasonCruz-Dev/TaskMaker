@@ -7,7 +7,7 @@ import {
     AsyncStorage, Keyboard, KeyboardAvoidingView
 } from 'react-native';
 import firebase from 'firebase';
-import colors from 'res/colors';
+import colors from 'res/colors.json';
 import { Feather } from '@expo/vector-icons';
 import { Card, Button } from '../common';
 
