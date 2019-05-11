@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 import colors from 'res/colors.json';
-
+import { Context } from '../Theme';
+let c = useContext(Context);
 const Button = (props) => {
     return (
         props.loading ?
@@ -16,7 +17,7 @@ const Button = (props) => {
 
 const styles = {
     textStyle: {
-        color: colors.white,
+        color: c.textColor || colors.white,
         fontSize: 20,
         fontWeight: '500',
         paddingHorizontal: 10
@@ -25,7 +26,7 @@ const styles = {
         left: 0,
         right: 0,
         borderRadius: 30,
-        backgroundColor: colors.button,
+        backgroundColor: c.bgColor || colors.button,
         paddingVertical: 12,
         elevation: 5,
         justifyContent: 'center',
