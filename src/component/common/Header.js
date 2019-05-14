@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, PixelRatio, Dimensions, Platform } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import { withNavigation } from 'react-navigation';
 import colors from 'res/colors.json';
 import fonts from 'res/fonts.json';
@@ -86,7 +86,7 @@ const styles = {
     text: {
         fontSize: calculateFontSize(16),
         fontWeight: '500',
-        fontFamily: fonts.title,
+        //fontFamily: fonts.title,
         color: colors.title
     }
 }

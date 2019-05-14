@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { FontAwesome } from "@expo/vector-icons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import colors from '../../res/colors.json';
 import fonts from '../../res/fonts.json';
 
@@ -45,7 +45,7 @@ const styles = {
     title: {
         alignSelf: 'center',
         fontSize: 14,
-        fontFamily: fonts.title
+        //fontFamily: fonts.title
     }
 }
 

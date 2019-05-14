@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StatusBar, FlatList, TouchableWithoutFeedback, Dimensions } from 'react-native';
+import { View, TouchableOpacity, StatusBar, FlatList, TouchableWithoutFeedback, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { markDone, undoDone, deleteTask, clearCompleted } from '../../redux/actions';
 import _ from 'lodash';
 import { DayCard, TaskRow, MoreOptionItem } from '../common';
 import Header from '../common/Header';
-import { Entypo, AntDesign, MaterialIcons } from '@expo/vector-icons';
+import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from 'res/colors.json';
 import { ThemeChoose } from '../common/ThemeChoose';
 

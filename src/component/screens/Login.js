@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import firebase from 'firebase';
 import colors from 'res/colors.json';
-import { Feather } from '@expo/vector-icons';
+import Feather from 'react-native-vector-icons/Feather';
 import { Card, Button } from '../common';
 
 class Login extends React.Component {

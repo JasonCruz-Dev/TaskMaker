@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, AsyncStorage } from 'react-native';
 import firebase from 'firebase';
 import colors from 'res/colors.json';
-import { Feather } from '@expo/vector-icons';
+import Feather from 'react-native-vector-icons/Feather';
 
 class Splash extends React.Component {
     constructor() {

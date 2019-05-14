@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
+import Entypo from 'react-native-vector-icons/Entypo';
 import colors from 'res/colors.json';
 import { Context } from '../Theme';
 let c = useContext(Context);
@@ -27,7 +27,6 @@ const styles = {
         color: c.textColor || colors.red,
         fontSize: 20,
         fontWeight: '500',
-        fontFamily: 'montserrat',
     },
     icon: {
         padding: 5
