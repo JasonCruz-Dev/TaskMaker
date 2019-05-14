@@ -27,7 +27,7 @@ const Router = createSwitchNavigator({
     Splash: Splash,
     Auth: Login,
     Home: HomeStackNavigator,
-    Test: AddTasks
+    Test: HomeScreen
 },
     {
         initialRouteName: 'Splash',

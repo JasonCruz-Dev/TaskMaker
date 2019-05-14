@@ -11,9 +11,6 @@ const { persistor, store } = configureStore();
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      fontLoaded: false
-    }
   }
 
   componentDidMount() {
@@ -22,13 +19,11 @@ export default class App extends React.Component {
 
   render() {
     return (
-      this.state.fontLoaded ?
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <Router />
-          </PersistGate>
-        </Provider>
-        : null
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Router />
+        </PersistGate>
+      </Provider>
     );
   }
 }

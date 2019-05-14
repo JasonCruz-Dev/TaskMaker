@@ -1,8 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Text, AsyncStorage } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import firebase from 'firebase';
 import colors from 'res/colors.json';
 import Feather from 'react-native-vector-icons/Feather';
+import Theme from '../Theme';
 
 class Splash extends React.Component {
     constructor() {
@@ -36,10 +38,12 @@ class Splash extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Feather name='check-circle' size={60} color={colors.red} />
-                <Text style={styles.text}>Task Maker</Text>
-            </View>
+            <Theme name='red'>
+                <View style={styles.container}>
+                    <Feather name='check-circle' size={60} color={colors.red} />
+                    <Text style={styles.text}>Task Maker</Text>
+                </View>
+            </Theme>
         );
     }
 }

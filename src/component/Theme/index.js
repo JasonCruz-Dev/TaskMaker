@@ -9,30 +9,39 @@ const Theme = ({ name, children }) => {
             textColor = colors.white;
             bgColor = colors.darkGrey;
             phColor: colors.lightGrey;
+            break;
         case 'orange':
             textColor = colors.orange;
             bgColor = colors.white;
             phColor = colors.lightOrange;
+            break;
         case 'green':
             textColor = colors.green;
             bgColor = colors.white;
             phColor = colors.lightGreen;
+            break;
         case 'blue':
+            console.log('trigger')
             textColor = colors.indigo;
             bgColor = colors.white;
             phColor = colors.lightIndigo;
+            break;
         case 'purple':
             textColor = colors.purple;
             bgColor = colors.white;
             phColor = colors.lightPurple;
+            break;
         case 'red':
             textColor = colors.red;
             bgColor = colors.white;
             phColor = colors.lightRed;
+            break;
         default:
+            console.log('trigger')
             textColor = colors.red;
             bgColor = colors.white;
             phColor = colors.lightRed;
+            break;
     }
     return (
         <Context.Provider value={{ textColor, bgColor, phColor }}>

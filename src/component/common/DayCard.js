@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import colors from 'res/colors.json';
 import { Context } from '../Theme';
-let c = useContext(Context);
 
 const DayCard = (props) => {
+    let c = useContext(Context);
+    c = c || {};
     return (
         <View style={styles.constainerStyle}>
-            <Text style={styles.dayText}>{props.children}</Text>
+            <Text style={[styles.dayText, { color: c.textColor }]}>{props.children}</Text>
             <TouchableOpacity onPress={props.onPress} style={styles.icon}>
                 <Entypo name='plus' size={24} color={c.textColor || colors.red} />
             </TouchableOpacity>
@@ -24,9 +25,9 @@ const styles = {
         justifyContent: 'space-between'
     },
     dayText: {
-        color: c.textColor || colors.red,
         fontSize: 20,
         fontWeight: '500',
+        color: colors.red
     },
     icon: {
         padding: 5

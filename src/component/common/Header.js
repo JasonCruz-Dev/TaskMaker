@@ -1,10 +1,10 @@
-import React from 'react';
-import { View, TouchableOpacity, Text, PixelRatio, Dimensions, Platform } from 'react-native';
+import React, { useContext } from 'react';
+import { View, TouchableOpacity, Text, PixelRatio, Dimensions, Platform, StyleSheet } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { withNavigation } from 'react-navigation';
 import colors from 'res/colors.json';
 import fonts from 'res/fonts.json';
 const width = Dimensions.get('window').width;
+import { Context } from '../Theme';
 
 const calculateFontSize = (fontSize) => {
     if (width > 550) {
@@ -14,50 +14,50 @@ const calculateFontSize = (fontSize) => {
     }
 }
 
-class Header extends React.PureComponent {
-    renderLeftIcon() {
-        if (this.props.backEnabled) {
+const Header = (props) => {
+    let c = useContext(Context);
+    c = c || {};
+    renderLeftIcon = () => {
+        if (props.backEnabled) {
             return (
                 <TouchableOpacity
                     activeOpacity={0.5}
-                    style={[styles.iconView, styles.left]}
-                    onPress={() => this.props.navigation.goBack()}>
-                    <AntDesign name='arrowleft' size={26} color={colors.red} />
+                    style={[styles.iconView, styles.left, { backgroundColor: c.bgColor }]}
+                    onPress={() => props.navigation.goBack()}>
+                    <AntDesign name='arrowleft' size={26} color={c.textColor} />
                 </TouchableOpacity>
             );
-        } else if (this.props.left) {
+        } else if (props.left) {
             return (
                 <View style={[styles.iconView, styles.left]}>
-                    {this.props.left}
+                    {props.left}
                 </View>
             );
         } else { return null; }
     }
 
-    renderRightIcon() {
-        if (this.props.right) {
+    renderRightIcon = () => {
+        if (props.right) {
             return (
                 <View style={[styles.iconView, styles.right]}>
-                    {this.props.right}
+                    {props.right}
                 </View>
             );
         } else { return null; }
     }
 
-    render() {
-        return (
-            <View style={[styles.container, this.props.style]}>
-                <Text style={styles.text}>
-                    {this.props.children}
-                </Text>
-                {this.renderLeftIcon()}
-                {this.renderRightIcon()}
-            </View>
-        );
-    }
+    return (
+        <View style={[styles.container, props.style]}>
+            <Text style={[styles.text, { color: c.textColor }]}>
+                {props.children}
+            </Text>
+            {this.renderLeftIcon()}
+            {this.renderRightIcon()}
+        </View>
+    );
 }
 
-const styles = {
+const styles = StyleSheet.create({
     container: {
         marginTop: Platform.OS === 'android' ? 0 : 24,
         height: 56, left: 0, right: 0,
@@ -89,6 +89,6 @@ const styles = {
         //fontFamily: fonts.title,
         color: colors.title
     }
-}
+});
 
-export default withNavigation(Header);
+export { Header };

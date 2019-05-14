@@ -27,7 +27,7 @@ class AddTasks extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Header backEnabled>ADD TASK</Header>
+                <Header backEnabled navigation={this.props.navigation}>ADD TASK</Header>
                 <TextInput
                     placeholder="Enter your task here"
                     placeholderTextColor={colors.lightRed}
