@@ -6,9 +6,9 @@ const Theme = ({ name, children }) => {
     let textColor, bgColor, phColor;
     switch (name) {
         case 'dark':
-            textColor = colors.white;
+            textColor = colors.red;
             bgColor = colors.darkGrey;
-            phColor: colors.lightGrey;
+            phColor = colors.lightOrange;
             break;
         case 'orange':
             textColor = colors.orange;
@@ -21,7 +21,6 @@ const Theme = ({ name, children }) => {
             phColor = colors.lightGreen;
             break;
         case 'blue':
-            console.log('trigger')
             textColor = colors.indigo;
             bgColor = colors.white;
             phColor = colors.lightIndigo;

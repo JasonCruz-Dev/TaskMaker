@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, TouchableOpacity, StatusBar, FlatList, TouchableWithoutFeedback, Dimensions } from 'react-native';
+import { View, TouchableOpacity, FlatList, TouchableWithoutFeedback, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { markDone, undoDone, deleteTask, clearCompleted } from '../../redux/actions';
 import _ from 'lodash';
-import { DayCard, TaskRow, MoreOptionItem, Header } from '../common';
+import { DayCard, TaskRow, MoreOptionItem, Header, TopBar } from '../common';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -68,12 +68,9 @@ class HomeScreen extends React.Component {
 
     render() {
         return (
-            <Theme name='red'>
+            <Theme name='dark'>
                 <View style={styles.container} navigation={this.props.navigation}>
-                    <StatusBar
-                        backgroundColor={colors.red}
-                        barStyle="light-content"
-                    />
+                    <TopBar />
                     <Header
                         right={
                             <TouchableOpacity style={{ paddingHorizontal: 5 }} onPress={() => this.setState({ showMoreOption: true })}>

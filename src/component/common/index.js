@@ -4,3 +4,4 @@ export * from './DayCard';
 export * from './TaskRow';
 export * from './MoreOptionItem';
 export * from './Header';
+export * from './TopBar';
