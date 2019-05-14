@@ -68,7 +68,7 @@ class HomeScreen extends React.Component {
 
     render() {
         return (
-            <Theme name='dark'>
+            <Theme name='orange' bg='dark'>
                 <View style={styles.container} navigation={this.props.navigation}>
                     <TopBar />
                     <Header

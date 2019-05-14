@@ -8,7 +8,7 @@ const DayCard = (props) => {
     let c = useContext(Context);
     c = c || {};
     return (
-        <View style={styles.constainerStyle}>
+        <View style={[styles.container, { backgroundColor: c.bgDark }]}>
             <Text style={[styles.dayText, { color: c.textColor }]}>{props.children}</Text>
             <TouchableOpacity onPress={props.onPress} style={styles.icon}>
                 <Entypo name='plus' size={24} color={c.textColor || colors.red} />
@@ -18,7 +18,7 @@ const DayCard = (props) => {
 }
 
 const styles = {
-    constainerStyle: {
+    container: {
         elevation: 1,
         padding: 10,
         flexDirection: 'row',

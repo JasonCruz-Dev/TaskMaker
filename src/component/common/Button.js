@@ -8,11 +8,11 @@ const Button = (props) => {
     c = c || {};
     return (
         props.loading ?
-            <TouchableOpacity style={[styles.buttonStyle, { backgroundColor: c.bgColor || colors.red }]}>
+            <TouchableOpacity style={[styles.buttonStyle, { backgroundColor: c.bgDark || colors.red }]}>
                 <ActivityIndicator color={c.textColor || colors.white} size='small' />
                 <Text style={[styles.textStyle, { color: c.textColor || colors.white }]}>wait</Text>
             </TouchableOpacity> :
-            <TouchableOpacity onPress={props.onPress} style={[styles.buttonStyle, { backgroundColor: c.bgColor || colors.button, }]}>
+            <TouchableOpacity onPress={props.onPress} style={[styles.buttonStyle, { backgroundColor: c.bgDark || colors.button, }]}>
                 <Text style={[styles.textStyle, { color: c.textColor || colors.white, }]}>{props.children}</Text>
             </TouchableOpacity >
     );

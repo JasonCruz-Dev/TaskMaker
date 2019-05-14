@@ -7,7 +7,7 @@ const TopBar = (props) => {
     c = c || {};
     return (
         <StatusBar
-            backgroundColor={c.bgColor || colors.red}
+            backgroundColor={c.sbColor || colors.red}
             barStyle="light-content"
         />
     );

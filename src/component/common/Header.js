@@ -22,7 +22,7 @@ const Header = (props) => {
             return (
                 <TouchableOpacity
                     activeOpacity={0.5}
-                    style={[styles.iconView, styles.left, { backgroundColor: c.bgColor }]}
+                    style={[styles.iconView, styles.left]}
                     onPress={() => props.navigation.goBack()}>
                     <AntDesign name='arrowleft' size={26} color={c.textColor} />
                 </TouchableOpacity>
@@ -39,7 +39,7 @@ const Header = (props) => {
     renderRightIcon = () => {
         if (props.right) {
             return (
-                <View style={[styles.iconView, styles.right]}>
+                <View style={[styles.iconView, styles.right,]}>
                     {props.right}
                 </View>
             );
@@ -47,7 +47,7 @@ const Header = (props) => {
     }
 
     return (
-        <View style={[styles.container, props.style]}>
+        <View style={[styles.container, props.style, { backgroundColor: c.bgLight }]}>
             <Text style={[styles.text, { color: c.textColor }]}>
                 {props.children}
             </Text>
