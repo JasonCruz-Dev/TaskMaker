@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, TouchableOpacity, FlatList, TouchableWithoutFeedback, Dimensions } from 'react-native';
+import { View, TouchableOpacity, Switch, Text, FlatList, TouchableWithoutFeedback, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { markDone, undoDone, deleteTask, clearCompleted } from '../../redux/actions';
 import _ from 'lodash';
 import { DayCard, TaskRow, MoreOptionItem, Header, TopBar } from '../common';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from 'res/colors.json';
-import { ThemeChoose } from '../common/ThemeChoose';
 import Theme, { Context } from '../Theme';
 
 class HomeScreen extends React.Component {
@@ -18,7 +18,8 @@ class HomeScreen extends React.Component {
         showMoreOption: false,
         showThemeChooser: false,
         width: Dimensions.get('window').width,
-        theme: 'red'
+        theme: 'red',
+        value: true
     }
 
     onPress(day) {
@@ -28,7 +29,7 @@ class HomeScreen extends React.Component {
     renderMoreOption(value) {
         if (!this.state.showMoreOption) { return; }
         return (
-            <View style={[styles.moreOptions, {backgroundColor: value.bgColor}]}>
+            <View style={[styles.moreOptions, { backgroundColor: value.bgLight }]}>
                 <MoreOptionItem icon={
                     <AntDesign name='sync' size={15} color={value.textColor} />
                 }>Sync</MoreOptionItem>
@@ -53,30 +54,50 @@ class HomeScreen extends React.Component {
                     <AntDesign name='setting' size={18} color={value.textColor} />
                 }
                 >Settings</MoreOptionItem>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 5 }}>
+                    <Text style={{ color: value.textColor, fontSize: 16 }}>Dark Mode</Text>
+                    <Switch
+                        value={this.state.value}
+                        onValueChange={(value) => this.setState({ value })}
+                    />
+                </View>
+
             </View>
         );
     }
 
-    renderThemeChooser() {
+    renderThemeChooser(value) {
         if (!this.state.showThemeChooser) { return null; }
         return (
-            <View style={styles.chooseThemeView}>
-                <ThemeChoose onPress={() => this.setState({ showThemeChooser: false })}>
-
-                </ThemeChoose>
-            </View>
+            <View style={[styles.chooseThemeView, { backgroundColor: value.bgLight }]}>
+                <Text style={[styles.title, { color: value.textColor }]}>Choose theme</Text>
+                <View style={styles.colorBox}>
+                    <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ showThemeChooser: false, theme: 'red' })}>
+                        <FontAwesome name='circle' size={24} color={colors.red} />
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ showThemeChooser: false, theme: 'green' })}>
+                        <FontAwesome name='circle' size={24} color={colors.green} />
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ showThemeChooser: false, theme: 'blue' })}>
+                        <FontAwesome name='circle' size={24} color={colors.blue} />
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ showThemeChooser: false, theme: 'orange' })}>
+                        <FontAwesome name='circle' size={24} color={colors.orange} />
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ showThemeChooser: false, theme: 'purple' })}>
+                        <FontAwesome name='circle' size={24} color={colors.purple} />
+                    </TouchableOpacity>
+                </View>
+            </View >
         );
     }
 
     render() {
-        let c = this.context;
-        console.log(this.context)
-        c = c || {};
         return (
-            <Theme name='orange' bg='dark'>
+            <Theme name={this.state.theme} bg={this.state.value ? 'dark' : 'light'}>
                 <Context.Consumer>
                     {value => {
-                        return <View style={[styles.container, { backgroundColor: value.bgColor }]} navigation={this.props.navigation}>
+                        return <View style={[styles.container, { backgroundColor: value.bgDark }]} navigation={this.props.navigation}>
                             <TopBar />
                             <Header
                                 right={
@@ -151,13 +172,13 @@ class HomeScreen extends React.Component {
                                             }}
                                         />
                                     </View>
-                                    <TouchableOpacity style={[styles.actionButton]} onPress={() => this.onPress('today')}>
+                                    <TouchableOpacity style={[styles.actionButton, { backgroundColor: value.textColor }]} onPress={() => this.onPress('today')}>
                                         <Entypo name='plus' size={30} color={colors.backgroundColor} />
                                     </TouchableOpacity>
                                 </View>
                             </TouchableWithoutFeedback>
                             {this.renderMoreOption(value)}
-                            {this.renderThemeChooser()}
+                            {this.renderThemeChooser(value)}
                         </View>
                     }}
                 </Context.Consumer>
@@ -185,8 +206,7 @@ const styles = {
         justifyContent: 'center',
         padding: 10, borderRadius: 5,
         minWidth: 150,
-        backgroundColor: colors.backgroundColor,
-        elevation: 10
+        elevation: 3,
     },
     moreOptionText: {
         fontSize: 16,
@@ -194,12 +214,23 @@ const styles = {
     },
     chooseThemeView: {
         position: 'absolute',
-        left: 0, top: 0,
-        right: 0, bottom: 0,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.1)',
-        elevation: 10
+        top: '40%',
+        left: '50%',
+        marginLeft: -100,
+        elevation: 1,
+        padding: 25,
+        minWidth: 200,
+        borderRadius: 10,
+    },
+    colorBox: {
+        flexDirection: 'row',
+        marginTop: 10,
+        justifyContent: 'space-between'
+    },
+    title: {
+        alignSelf: 'center',
+        fontSize: 14,
+        //fontFamily: fonts.title
     }
 };
 

@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TouchableOpacity, Text } from 'react-native';
+import { Context } from '../Theme';
 
 const MoreOptionItem = (props) => {
+    let c = useContext(Context);
+    c = c || {};
     return (
         <TouchableOpacity
-            activeOpacity={0.8}
-            style={styles.constainerStyle}
+            style={styles.container}
             onPress={props.onPress}
         >
             {props.icon}
-            <Text style={styles.text}>
+            <Text style={[styles.text, { color: c.textColor }]}>
                 {props.children}
             </Text>
         </TouchableOpacity>
@@ -17,7 +19,7 @@ const MoreOptionItem = (props) => {
 }
 
 const styles = {
-    constainerStyle: {
+    container: {
         left: 0, right: 0,
         flexDirection: 'row',
         padding: 5,

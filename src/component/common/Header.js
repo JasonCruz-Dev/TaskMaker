@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         marginTop: Platform.OS === 'android' ? 0 : 24,
         height: 56, left: 0, right: 0,
         backgroundColor: colors.backgroundColor,
-        elevation: 5,
+        elevation: 3,
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         height: 45,
         aspectRatio: 1,
-        zIndex: 10,
         borderRadius: 28,
         justifyContent: 'center',
         alignItems: 'center'
