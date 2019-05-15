@@ -4,9 +4,10 @@ import {
     View, TouchableOpacity, TouchableWithoutFeedback,
     StatusBar, SafeAreaView,
     Text, TextInput,
-    AsyncStorage, Keyboard, KeyboardAvoidingView
+    Keyboard, KeyboardAvoidingView
 } from 'react-native';
 import firebase from 'firebase';
+import AsyncStorage from '@react-native-community/async-storage';
 import colors from 'res/colors.json';
 import Feather from 'react-native-vector-icons/Feather';
 import { Card, Button } from '../common';
