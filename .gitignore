@@ -7,3 +7,4 @@ npm-debug.*
 *.mobileprovision
 src/networking/firebase-config.js
 android/app/my-release-key.keystore
+android
