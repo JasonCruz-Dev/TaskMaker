@@ -11,7 +11,7 @@ import colors from 'res/colors.json';
 import Feather from 'react-native-vector-icons/Feather';
 import { Card, Button } from '../common';
 
-class Login extends React.Component {
+class LoginScreen extends React.Component {
     state = {
         login: true,
         name: '',
@@ -44,9 +44,9 @@ class Login extends React.Component {
     }
 
     async onSignUpPress() {
-        // const { email, password, name } = this.state;
-        // if (email === '' || password === '' || name === '') { return; }
-        // this.setState({ loading: true });
+        const { email, password, name } = this.state;
+        if (email === '' || password === '' || name === '') { return; }
+        this.setState({ loading: true });
         // firebase.auth().signInWithEmailAndPassword(email, password)
         //     .then((promise) => console.log('user already exists'))
         //     .catch(() => {
@@ -196,4 +196,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Login;
+export default LoginScreen;

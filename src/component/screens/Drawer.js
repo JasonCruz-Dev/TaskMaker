@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, } from 'react-native';
 import { connect } from "react-redux";
-import { } from '../../redux/actions';
+import { } from '../../actions';
 import colors from 'res/colors.json';
 
 class Drawer extends React.Component {

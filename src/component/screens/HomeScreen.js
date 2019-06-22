@@ -1,7 +1,11 @@
 import React from 'react';
-import { View, TouchableOpacity, Switch, Text, FlatList, TouchableWithoutFeedback, Dimensions } from 'react-native';
+import {
+    View, TouchableOpacity,
+    Switch, Text, FlatList,
+    TouchableWithoutFeedback, Dimensions
+} from 'react-native';
 import { connect } from 'react-redux';
-import { markDone, undoDone, deleteTask, clearCompleted } from '../../redux/actions';
+import { markDone, undoDone, deleteTask, clearCompleted } from '../../actions';
 import _ from 'lodash';
 import { DayCard, TaskRow, MoreOptionItem, Header, TopBar } from '../common';
 import Entypo from 'react-native-vector-icons/Entypo';

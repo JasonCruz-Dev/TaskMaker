@@ -14,7 +14,7 @@ class Splash extends React.Component {
     }
 
     componentWillMount() {
-        //this.logOut();
+        this.logOut();
     }
 
     async logOut() {
@@ -24,13 +24,9 @@ class Splash extends React.Component {
     async componentDidMount() {
         let userToken = await AsyncStorage.getItem('userToken');
         if (userToken) {
-            setTimeout(() => {
-                this.props.navigation.navigate('Home');
-            }, 1000);
+            this.props.navigation.navigate('Home');
         } else {
-            setTimeout(() => {
-                this.props.navigation.navigate('Auth');
-            }, 1000);
+            this.props.navigation.navigate('Auth');
         }
     }
 

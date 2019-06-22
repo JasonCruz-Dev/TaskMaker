@@ -1,6 +1,6 @@
 import { createAppContainer, createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import HomeScreen from 'screens/HomeScreen';
-import Login from 'screens/Login';
+import LoginScreen from 'screens/LoginScreen';
 import Splash from 'screens/Splash';
 import AddTasks from 'screens/AddTasks';
 
@@ -25,7 +25,7 @@ const HomeStackNavigator = createStackNavigator({
 
 const Router = createSwitchNavigator({
     Splash: Splash,
-    Auth: Login,
+    Auth: LoginScreen,
     Home: HomeStackNavigator,
     Test: HomeScreen
 },

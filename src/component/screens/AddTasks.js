@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, TextInput, } from 'react-native';
 import { connect } from "react-redux";
-import { addTasks } from '../../redux/actions';
+import { addTasks } from '../../actions';
 import Header from '../common/Header';
 import colors from 'res/colors.json';
 
