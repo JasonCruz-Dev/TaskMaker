@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import firebase from 'firebase';
 import colors from 'res/colors.json';
 import Feather from 'react-native-vector-icons/Feather';
 import Theme from '../Theme';
@@ -19,7 +18,6 @@ class Splash extends React.Component {
     }
 
     async logOut() {
-        firebase.auth().signOut();
         await AsyncStorage.removeItem('userToken');
     }
 

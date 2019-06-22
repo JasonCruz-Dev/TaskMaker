@@ -6,7 +6,6 @@ import {
     Text, TextInput,
     Keyboard, KeyboardAvoidingView
 } from 'react-native';
-import firebase from 'firebase';
 import AsyncStorage from '@react-native-community/async-storage';
 import colors from 'res/colors.json';
 import Feather from 'react-native-vector-icons/Feather';
@@ -22,21 +21,21 @@ class Login extends React.Component {
     }
 
     async onLoginInPress() {
-        const { email, password } = this.state;
-        if (email === '' || password === '') { return; }
-        this.setState({ loading: true });
-        try {
-            let promise = await firebase.auth().signInWithEmailAndPassword(email, password);
-            if (promise) {
-                await AsyncStorage.setItem('userToken', promise.user.uid);
-                this.setState({ loading: false });
-                this.props.navigation.navigate('Home');
-                console.log('promise', promise.user.uid);
-            }
-        } catch (error) {
-            console.log('error', error);
-            this.setState({ loading: false });
-        }
+        // const { email, password } = this.state;
+        // if (email === '' || password === '') { return; }
+        // this.setState({ loading: true });
+        // try {
+        //     let promise = await firebase.auth().signInWithEmailAndPassword(email, password);
+        //     if (promise) {
+        //         await AsyncStorage.setItem('userToken', promise.user.uid);
+        //         this.setState({ loading: false });
+        //         this.props.navigation.navigate('Home');
+        //         console.log('promise', promise.user.uid);
+        //     }
+        // } catch (error) {
+        //     console.log('error', error);
+        //     this.setState({ loading: false });
+        // }
 
     }
 
@@ -45,27 +44,26 @@ class Login extends React.Component {
     }
 
     async onSignUpPress() {
-        const { email, password, name } = this.state;
-        if (email === '' || password === '' || name === '') { return; }
-        this.setState({ loading: true });
-        firebase.auth().signInWithEmailAndPassword(email, password)
-            .then((promise) => console.log('user already exists'))
-            .catch(() => {
-                firebase.auth().createUserWithEmailAndPassword(email, password)
-                    .then(async (promise) => {
-                        const uid = promise.user.uid;
-                        await AsyncStorage.setItem('userToken', uid);
-                        await firebase.database().ref(`/users/${uid}/userinfo`).push({ name, email });
-                        this.setState({ loading: false });
-                        this.props.navigation.navigate('Home');
-                        console.log('create user success');
-                    })
-                    .catch((error) => {
-                        this.setState({ loading: false });
-                        console.log('create user error', error);
-                    });
-            });
-
+        // const { email, password, name } = this.state;
+        // if (email === '' || password === '' || name === '') { return; }
+        // this.setState({ loading: true });
+        // firebase.auth().signInWithEmailAndPassword(email, password)
+        //     .then((promise) => console.log('user already exists'))
+        //     .catch(() => {
+        //         firebase.auth().createUserWithEmailAndPassword(email, password)
+        //             .then(async (promise) => {
+        //                 const uid = promise.user.uid;
+        //                 await AsyncStorage.setItem('userToken', uid);
+        //                 await firebase.database().ref(`/users/${uid}/userinfo`).push({ name, email });
+        //                 this.setState({ loading: false });
+        //                 this.props.navigation.navigate('Home');
+        //                 console.log('create user success');
+        //             })
+        //             .catch((error) => {
+        //                 this.setState({ loading: false });
+        //                 console.log('create user error', error);
+        //             });
+        //     });
     }
     renderLogo() {
         return (
