@@ -4,9 +4,11 @@ import {
     View, TouchableOpacity, TouchableWithoutFeedback,
     StatusBar, SafeAreaView,
     Text, TextInput,
-    Keyboard, KeyboardAvoidingView
+    Keyboard, KeyboardAvoidingView,
+    Platform, ToastAndroid
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import db from '../../networking/db';
 import colors from 'res/colors.json';
 import Feather from 'react-native-vector-icons/Feather';
 import { Card, Button } from '../common';
@@ -20,23 +22,19 @@ class LoginScreen extends React.Component {
         loading: false,
     }
 
-    async onLoginInPress() {
-        // const { email, password } = this.state;
-        // if (email === '' || password === '') { return; }
-        // this.setState({ loading: true });
-        // try {
-        //     let promise = await firebase.auth().signInWithEmailAndPassword(email, password);
-        //     if (promise) {
-        //         await AsyncStorage.setItem('userToken', promise.user.uid);
-        //         this.setState({ loading: false });
-        //         this.props.navigation.navigate('Home');
-        //         console.log('promise', promise.user.uid);
-        //     }
-        // } catch (error) {
-        //     console.log('error', error);
-        //     this.setState({ loading: false });
-        // }
-
+    async onLoginPress() {
+        const { email, password } = this.state;
+        if (email === '' || password === '') { return; }
+        this.setState({ loading: true });
+        let token = await db.loginUser(email, password);
+        if (token === 'bad request') {
+            if (Platform.OS == 'android') {
+                ToastAndroid.show('Bad request, check email and password again')
+            }
+        }
+        await AsyncStorage.setItem('userToken', token);
+        this.setState({ loading: false });
+        this.props.navigation.navigate('Home');
     }
 
     switchForm() {
@@ -44,27 +42,21 @@ class LoginScreen extends React.Component {
     }
 
     async onSignUpPress() {
-        const { email, password, name } = this.state;
+        const { name, email, password } = this.state;
         if (email === '' || password === '' || name === '') { return; }
         this.setState({ loading: true });
-        // firebase.auth().signInWithEmailAndPassword(email, password)
-        //     .then((promise) => console.log('user already exists'))
-        //     .catch(() => {
-        //         firebase.auth().createUserWithEmailAndPassword(email, password)
-        //             .then(async (promise) => {
-        //                 const uid = promise.user.uid;
-        //                 await AsyncStorage.setItem('userToken', uid);
-        //                 await firebase.database().ref(`/users/${uid}/userinfo`).push({ name, email });
-        //                 this.setState({ loading: false });
-        //                 this.props.navigation.navigate('Home');
-        //                 console.log('create user success');
-        //             })
-        //             .catch((error) => {
-        //                 this.setState({ loading: false });
-        //                 console.log('create user error', error);
-        //             });
-        //     });
+        let token = await db.createUser(name, email, password);
+        if (token === 'bad request') {
+            if (Platform.OS == 'android') {
+                ToastAndroid.show('Bad request, check email and password again', ToastAndroid.LONG);
+                return this.setState({ loading: false });
+            }
+        }
+        await AsyncStorage.setItem('userToken', token);
+        this.setState({ loading: false });
+        this.props.navigation.navigate('Home');
     }
+
     renderLogo() {
         return (
             <KeyboardAvoidingView behavior='padding' style={{ paddingVertical: 10, }}>
@@ -81,6 +73,7 @@ class LoginScreen extends React.Component {
             </KeyboardAvoidingView>
         );
     }
+
     renderForm() {
         return (
             <KeyboardAvoidingView behavior='padding' style={{ paddingVertical: 20, }}>
@@ -117,7 +110,7 @@ class LoginScreen extends React.Component {
                 <Card>
                     <View style={{ paddingTop: 5 }}>
                         <Button
-                            onPress={() => { this.state.login ? this.onLoginInPress() : this.onSignUpPress() }}
+                            onPress={() => { this.state.login ? this.onLoginPress() : this.onSignUpPress() }}
                             loading={this.state.loading}>
                             {this.state.login ? 'Log in' : 'Create Account'}
                         </Button>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import { saveThemeInfo } from '../../actions'
 import AsyncStorage from '@react-native-community/async-storage';
 import colors from 'res/colors.json';
 import Feather from 'react-native-vector-icons/Feather';
@@ -14,6 +16,7 @@ class Splash extends React.Component {
     }
 
     componentWillMount() {
+        this.props.saveThemeInfo();
         this.logOut();
     }
 
@@ -57,4 +60,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Splash;
+export default connect(null, { saveThemeInfo })(Splash);

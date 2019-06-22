@@ -1,4 +1,6 @@
+import AsyncStorage from '@react-native-community/async-storage';
 const index = 'https://shad-task-manager.herokuapp.com';
+let userToken = await AsyncStorage.getItem('userToken');
 
 const createUser = async (name, email, password) => {
     try {
@@ -7,7 +9,9 @@ const createUser = async (name, email, password) => {
             body: JSON.stringify({ name, email, password })
         });
         let data = await response.json(); //expect user and token
-        if (data) {
+        if (data.errmsg) {
+            return 'bad request';
+        } else {
             console.log(data.user);
             return data.token;
         }
@@ -23,7 +27,9 @@ const loginUser = async (email, password) => {
             body: JSON.stringify({ email, password })
         });
         let data = await response.json(); //expect user and token
-        if (data) {
+        if (data.errmsg) {
+            return 'bad request';
+        } else {
             console.log(data.user);
             return data.token;
         }
@@ -32,12 +38,12 @@ const loginUser = async (email, password) => {
     }
 }
 
-const logoutUser = async (token) => {
+const logoutUser = async () => {
     try {
         let response = await fetch(`${index}/users/logout`, {
             method: 'POST',
             headers: new Headers({
-                'Authorization': 'Basic ' + token,
+                'Authorization': 'Basic ' + userToken,
             }),
         });
         if (response) {
@@ -50,12 +56,12 @@ const logoutUser = async (token) => {
     }
 }
 
-const logoutAllSession = async (token) => {
+const logoutAllSession = async () => {
     try {
         let response = await fetch(`${index}/users/logoutAll`, {
             method: 'POST',
             headers: new Headers({
-                'Authorization': 'Basic ' + token,
+                'Authorization': 'Basic ' + userToken,
             }),
         });
         if (response) {
@@ -68,12 +74,12 @@ const logoutAllSession = async (token) => {
     }
 }
 
-const readUser = async (token) => {
+const readUser = async () => {
     try {
         let response = await fetch(`${index}/users/me`, {
             method: 'GET',
             headers: new Headers({
-                'Authorization': 'Basic ' + token,
+                'Authorization': 'Basic ' + userToken,
             }),
         });
         let data = await response.json(); //expect an object with user info
@@ -85,12 +91,12 @@ const readUser = async (token) => {
     }
 }
 
-const updateUser = async (token, object) => {
+const updateUser = async (object) => {
     try {
         let response = await fetch(`${index}/users/me`, {
             method: 'PATCH',
             headers: new Headers({
-                'Authorization': 'Basic ' + token,
+                'Authorization': 'Basic ' + userToken,
             }),
             body: JSON.stringify(object)
         });
@@ -103,12 +109,12 @@ const updateUser = async (token, object) => {
     }
 }
 
-const deleteUser = async (token) => {
+const deleteUser = async () => {
     try {
         let response = await fetch(`${index}/users/me`, {
             method: 'DELETE',
             headers: new Headers({
-                'Authorization': 'Basic ' + token,
+                'Authorization': 'Basic ' + userToken,
             }),
             body: JSON.stringify(object)
         });
@@ -121,14 +127,14 @@ const deleteUser = async (token) => {
     }
 }
 
-const uploadAvatar = async (token, image) => {
+const uploadAvatar = async (image) => {
     let imageData = new FormData();
     imageData.append('avatar', image)
     try {
         let response = await fetch(`${index}/users/me/avatar`, {
             method: 'POST',
             headers: new Headers({
-                'Authorization': 'Basic ' + token,
+                'Authorization': 'Basic ' + userToken,
                 "Content-Type": "multipart/form-data",
             }),
             body: imageData

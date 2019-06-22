@@ -5,7 +5,7 @@ import {
     TouchableWithoutFeedback, Dimensions
 } from 'react-native';
 import { connect } from 'react-redux';
-import { markDone, undoDone, deleteTask, clearCompleted } from '../../actions';
+import * as actions from '../../actions';
 import _ from 'lodash';
 import { DayCard, TaskRow, MoreOptionItem, Header, TopBar } from '../common';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -23,7 +23,7 @@ class HomeScreen extends React.Component {
         showThemeChooser: false,
         width: Dimensions.get('window').width,
         theme: 'red',
-        value: true
+        darkMode: false
     }
 
     onPress(day) {
@@ -61,8 +61,8 @@ class HomeScreen extends React.Component {
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 5 }}>
                     <Text style={{ color: value.textColor, fontSize: 16 }}>Dark Mode</Text>
                     <Switch
-                        value={this.state.value}
-                        onValueChange={(value) => this.setState({ value })}
+                        value={this.props.darkMode}
+                        onValueChange={(value) => this.props.toggleDarkMode(value)}
                     />
                 </View>
 
@@ -76,19 +76,39 @@ class HomeScreen extends React.Component {
             <View style={[styles.chooseThemeView, { backgroundColor: value.bgLight }]}>
                 <Text style={[styles.title, { color: value.textColor }]}>Choose theme</Text>
                 <View style={styles.colorBox}>
-                    <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ showThemeChooser: false, theme: 'red' })}>
+                    <TouchableOpacity activeOpacity={0.5}
+                        onPress={() => {
+                            this.props.toggleThemeColor('red')
+                            this.setState({ showThemeChooser: false })
+                        }}>
                         <FontAwesome name='circle' size={24} color={colors.red} />
                     </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ showThemeChooser: false, theme: 'green' })}>
+                    <TouchableOpacity activeOpacity={0.5}
+                        onPress={() => {
+                            this.props.toggleThemeColor('green')
+                            this.setState({ showThemeChooser: false })
+                        }}>
                         <FontAwesome name='circle' size={24} color={colors.green} />
                     </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ showThemeChooser: false, theme: 'blue' })}>
+                    <TouchableOpacity activeOpacity={0.5}
+                        onPress={() => {
+                            this.props.toggleThemeColor('blue')
+                            this.setState({ showThemeChooser: false })
+                        }}>
                         <FontAwesome name='circle' size={24} color={colors.blue} />
                     </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ showThemeChooser: false, theme: 'orange' })}>
+                    <TouchableOpacity activeOpacity={0.5}
+                        onPress={() => {
+                            this.props.toggleThemeColor('orange')
+                            this.setState({ showThemeChooser: false })
+                        }}>
                         <FontAwesome name='circle' size={24} color={colors.orange} />
                     </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ showThemeChooser: false, theme: 'purple' })}>
+                    <TouchableOpacity activeOpacity={0.5}
+                        onPress={() => {
+                            this.props.toggleThemeColor('purple')
+                            this.setState({ showThemeChooser: false })
+                        }}>
                         <FontAwesome name='circle' size={24} color={colors.purple} />
                     </TouchableOpacity>
                 </View>
@@ -98,7 +118,7 @@ class HomeScreen extends React.Component {
 
     render() {
         return (
-            <Theme name={this.state.theme} bg={this.state.value ? 'dark' : 'light'}>
+            <Theme name={this.props.theme} bg={this.props.darkMode ? 'dark' : 'light'}>
                 <Context.Consumer>
                     {value => {
                         return <View style={[styles.container, { backgroundColor: value.bgDark }]} navigation={this.props.navigation}>
@@ -114,7 +134,7 @@ class HomeScreen extends React.Component {
                     </Header>
                             <DayCard onPress={() => this.onPress('today')}>
                                 Today
-                    </DayCard>
+                            </DayCard>
                             <View>
                                 <FlatList
                                     data={this.props.taskArray.filter(task => task.day === 'today')}
@@ -241,7 +261,9 @@ const styles = {
 const mapStateToProps = state => {
     return {
         taskArray: state.tasks.taskArray,
+        darkMode: state.ui.darkMode,
+        theme: state.ui.theme
     };
 }
 
-export default connect(mapStateToProps, { markDone, undoDone, deleteTask, clearCompleted })(HomeScreen);
+export default connect(mapStateToProps, actions)(HomeScreen);
