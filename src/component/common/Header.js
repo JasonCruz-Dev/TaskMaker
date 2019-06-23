@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { View, TouchableOpacity, Text, PixelRatio, Dimensions, Platform, StyleSheet } from 'react-native';
+import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import colors from 'res/colors.json';
-import fonts from 'res/fonts.json';
 const width = Dimensions.get('window').width;
 import { Context } from '../Theme';
 
@@ -17,33 +17,27 @@ const calculateFontSize = (fontSize) => {
 const Header = (props) => {
     let c = useContext(Context);
     c = c || {};
+
     renderLeftIcon = () => {
         if (props.backEnabled) {
             return (
-                <TouchableOpacity
-                    activeOpacity={0.5}
-                    style={[styles.iconView, styles.left]}
-                    onPress={() => props.navigation.goBack()}>
+                <TouchableOpacity style={[styles.iconView, styles.leftMargin]} onPress={() => props.navigation.goBack()}>
                     <AntDesign name='arrowleft' size={26} color={c.textColor} />
                 </TouchableOpacity>
             );
-        } else if (props.left) {
-            return (
-                <View style={[styles.iconView, styles.left]}>
-                    {props.left}
-                </View>
-            );
-        } else { return null; }
+        } else {
+            return null;
+        }
     }
 
     renderRightIcon = () => {
-        if (props.right) {
+        if (props.right === 'more') {
             return (
-                <View style={[styles.iconView, styles.right,]}>
-                    {props.right}
-                </View>
+                <TouchableOpacity style={[styles.iconView, styles.rightMargin]} onPress={props.onPress}>
+                    <Entypo name='dots-three-vertical' size={20} color={c.textColor} />
+                </TouchableOpacity>
             );
-        } else { return null; }
+        }
     }
 
     return (
@@ -72,20 +66,19 @@ const styles = StyleSheet.create({
         aspectRatio: 1,
         borderRadius: 28,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
-    left: {
+    leftMargin: {
         left: 0,
-        marginLeft: 5,
-    },
-    right: {
-        right: 0,
         marginRight: 5,
+    },
+    rightMargin: {
+        right: 0,
+        marginRight: 5
     },
     text: {
         fontSize: calculateFontSize(16),
         fontWeight: '500',
-        //fontFamily: fonts.title,
         color: colors.title
     }
 });

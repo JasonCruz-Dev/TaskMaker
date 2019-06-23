@@ -7,7 +7,7 @@ import {
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import _ from 'lodash';
-import { DayCard, TaskRow, MoreOptionItem, Header, TopBar } from '../common';
+import { DayCard, TaskRow, MoreOptionItem, Header, TopBar, ActionButton } from '../common';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -26,6 +26,10 @@ class HomeScreen extends React.Component {
         darkMode: false
     }
 
+    componentWillMount() {
+        this.props.saveThemeInfo();
+    }
+
     onPress(day) {
         this.props.navigation.navigate('AddTasks', { day });
     }
@@ -38,13 +42,10 @@ class HomeScreen extends React.Component {
                     <AntDesign name='sync' size={15} color={value.textColor} />
                 }>Sync</MoreOptionItem>
                 <MoreOptionItem
-                    icon={
-                        <MaterialIcons name='style' size={18} color={value.textColor} />
-                    }
-                    onPress={() => {
-                        this.setState({ showMoreOption: false, showThemeChooser: true })
-                    }}
-                >Theme</MoreOptionItem>
+                    icon={<MaterialIcons name='style' size={18} color={value.textColor} />}
+                    onPress={() => { this.setState({ showMoreOption: false, showThemeChooser: true }) }}>
+                    Theme
+                </MoreOptionItem>
                 <MoreOptionItem
                     icon={
                         <AntDesign name='closecircleo' size={15} color={value.textColor} />
@@ -121,49 +122,23 @@ class HomeScreen extends React.Component {
             <Theme name={this.props.theme} bg={this.props.darkMode ? 'dark' : 'light'}>
                 <Context.Consumer>
                     {value => {
-                        return <View style={[styles.container, { backgroundColor: value.bgDark }]} navigation={this.props.navigation}>
+                        return <View style={[styles.container, { backgroundColor: value.bgDark }]}>
                             <TopBar />
-                            <Header
-                                right={
-                                    <TouchableOpacity style={{ paddingHorizontal: 5 }} onPress={() => this.setState({ showMoreOption: true })}>
-                                        <Entypo name='dots-three-vertical' size={20} color={value.textColor} />
-
-                                    </TouchableOpacity>
-                                }>
+                            <Header right='more' onPress={() => this.setState({ showMoreOption: true })}>
                                 ALL TASKS
-                    </Header>
-                            <DayCard onPress={() => this.onPress('today')}>
-                                Today
-                            </DayCard>
-                            <View>
-                                <FlatList
-                                    data={this.props.taskArray.filter(task => task.day === 'today')}
-                                    initialNumToRender={4}
-                                    keyExtractor={(item, index) => index.toString()}
-                                    renderItem={({ item }) => {
-                                        console.log('render task today');
-                                        return (
-                                            <TaskRow
-                                                done={item.completed}
-                                                onPress={() => this.props.markDone(item)}
-                                                onClose={() => this.props.deleteTask(item)}
-                                                onCheckPress={() => this.props.undoDone(item)}>
-                                                {item.description}
-                                            </TaskRow>
-                                        );
-                                    }}
-                                />
-                            </View>
+                            </Header>
                             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.setState({ showMoreOption: false })}>
                                 <View style={{ flex: 1 }}>
-                                    <DayCard onPress={() => this.onPress('tomorrow')}>Tomorrow</DayCard>
+                                    <DayCard onPress={() => this.onPress('today')}>
+                                        Today
+                                </DayCard>
                                     <View>
                                         <FlatList
-                                            data={this.props.taskArray.filter(task => task.day === 'tomorrow')}
+                                            data={this.props.taskArray.filter(task => task.day === 'today')}
                                             initialNumToRender={4}
                                             keyExtractor={(item, index) => index.toString()}
                                             renderItem={({ item }) => {
-                                                console.log('render task tomorrow');
+                                                console.log('render task today');
                                                 return (
                                                     <TaskRow
                                                         done={item.completed}
@@ -176,14 +151,16 @@ class HomeScreen extends React.Component {
                                             }}
                                         />
                                     </View>
-                                    <DayCard onPress={() => this.onPress('someday')}>Someday</DayCard>
+                                    <DayCard onPress={() => this.onPress('draft')}>
+                                        Draft
+                                    </DayCard>
                                     <View>
                                         <FlatList
-                                            data={this.props.taskArray.filter(task => task.day === 'someday')}
+                                            data={this.props.taskArray.filter(task => task.day === 'draft')}
                                             initialNumToRender={4}
                                             keyExtractor={(item, index) => index.toString()}
                                             renderItem={({ item }) => {
-                                                console.log('render task someday');
+                                                console.log('render task draft');
                                                 return (
                                                     <TaskRow
                                                         done={item.completed}
@@ -196,11 +173,10 @@ class HomeScreen extends React.Component {
                                             }}
                                         />
                                     </View>
-                                    <TouchableOpacity style={[styles.actionButton, { backgroundColor: value.textColor }]} onPress={() => this.onPress('today')}>
-                                        <Entypo name='plus' size={30} color={colors.backgroundColor} />
-                                    </TouchableOpacity>
+                                    <ActionButton onPress={() => this.onPress('today')} />
                                 </View>
                             </TouchableWithoutFeedback>
+
                             {this.renderMoreOption(value)}
                             {this.renderThemeChooser(value)}
                         </View>
@@ -226,11 +202,11 @@ const styles = {
         color: colors.text,
     },
     moreOptions: {
-        position: 'absolute', right: 5, top: 5,
+        position: 'absolute', right: 5, top: 10,
         justifyContent: 'center',
         padding: 10, borderRadius: 5,
         minWidth: 150,
-        elevation: 3,
+        elevation: 5,
     },
     moreOptionText: {
         fontSize: 16,
@@ -254,7 +230,6 @@ const styles = {
     title: {
         alignSelf: 'center',
         fontSize: 14,
-        //fontFamily: fonts.title
     }
 };
 

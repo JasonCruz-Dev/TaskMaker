@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
 const index = 'https://shad-task-manager.herokuapp.com';
-let userToken = await AsyncStorage.getItem('userToken');
 
 const createUser = async (name, email, password) => {
     try {
@@ -40,6 +39,7 @@ const loginUser = async (email, password) => {
 
 const logoutUser = async () => {
     try {
+        let userToken = await AsyncStorage.getItem('userToken');
         let response = await fetch(`${index}/users/logout`, {
             method: 'POST',
             headers: new Headers({
@@ -58,6 +58,7 @@ const logoutUser = async () => {
 
 const logoutAllSession = async () => {
     try {
+        let userToken = await AsyncStorage.getItem('userToken');
         let response = await fetch(`${index}/users/logoutAll`, {
             method: 'POST',
             headers: new Headers({
@@ -76,6 +77,7 @@ const logoutAllSession = async () => {
 
 const readUser = async () => {
     try {
+        let userToken = await AsyncStorage.getItem('userToken');
         let response = await fetch(`${index}/users/me`, {
             method: 'GET',
             headers: new Headers({
@@ -93,6 +95,7 @@ const readUser = async () => {
 
 const updateUser = async (object) => {
     try {
+        let userToken = await AsyncStorage.getItem('userToken');
         let response = await fetch(`${index}/users/me`, {
             method: 'PATCH',
             headers: new Headers({
@@ -111,6 +114,7 @@ const updateUser = async (object) => {
 
 const deleteUser = async () => {
     try {
+        let userToken = await AsyncStorage.getItem('userToken');
         let response = await fetch(`${index}/users/me`, {
             method: 'DELETE',
             headers: new Headers({
@@ -131,6 +135,7 @@ const uploadAvatar = async (image) => {
     let imageData = new FormData();
     imageData.append('avatar', image)
     try {
+        let userToken = await AsyncStorage.getItem('userToken');
         let response = await fetch(`${index}/users/me/avatar`, {
             method: 'POST',
             headers: new Headers({
