@@ -12,6 +12,7 @@ import db from '../../networking/db';
 import colors from 'res/colors.json';
 import Feather from 'react-native-vector-icons/Feather';
 import { Card, Button } from '../common';
+import { Loader } from '../common/Loader';
 
 class LoginScreen extends React.Component {
     state = {
@@ -29,7 +30,8 @@ class LoginScreen extends React.Component {
         let token = await db.loginUser(email, password);
         if (token === 'bad request') {
             if (Platform.OS == 'android') {
-                ToastAndroid.show('Bad request, check email and password again')
+                ToastAndroid.show('Bad request, check email and password again', ToastAndroid.LONG);
+                return this.setState({ loading: false });
             }
         }
         await AsyncStorage.setItem('userToken', token);
@@ -46,6 +48,7 @@ class LoginScreen extends React.Component {
         if (email === '' || password === '' || name === '') { return; }
         this.setState({ loading: true });
         let token = await db.createUser(name, email, password);
+        console.log({ token });
         if (token === 'bad request') {
             if (Platform.OS == 'android') {
                 ToastAndroid.show('Bad request, check email and password again', ToastAndroid.LONG);
@@ -103,8 +106,7 @@ class LoginScreen extends React.Component {
                 <Card>
                     <View style={{ paddingTop: 5 }}>
                         <Button
-                            onPress={() => { this.state.login ? this.onLoginPress() : this.onSignUpPress() }}
-                            loading={this.state.loading}>
+                            onPress={() => { this.state.login ? this.onLoginPress() : this.onSignUpPress() }}>
                             {this.state.login ? 'Log in' : 'Create Account'}
                         </Button>
                     </View>
@@ -116,8 +118,8 @@ class LoginScreen extends React.Component {
         return (
             <SafeAreaView style={styles.container}>
                 <StatusBar
-                    backgroundColor={colors.backgroundColor}
-                    barStyle="dark-content"
+                    backgroundColor={colors.red}
+                    barStyle="light-content"
                 />
                 <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
                     <View style={styles.container}>
@@ -133,6 +135,7 @@ class LoginScreen extends React.Component {
                                 </Text>
                             </TouchableOpacity>
                         </View>
+                        {this.state.loading ? <Loader /> : null}
                     </View>
                 </TouchableWithoutFeedback>
             </SafeAreaView>

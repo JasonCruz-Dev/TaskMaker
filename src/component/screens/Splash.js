@@ -15,17 +15,10 @@ class Splash extends React.Component {
         }
     }
 
-    componentWillMount() {
-        this.props.saveThemeInfo();
-        this.logOut();
-    }
-
-    async logOut() {
-        await AsyncStorage.removeItem('userToken');
-    }
-
     async componentDidMount() {
+        this.props.saveThemeInfo();
         let userToken = await AsyncStorage.getItem('userToken');
+        console.log({ userToken })
         if (userToken) {
             this.props.navigation.navigate('Home');
         } else {

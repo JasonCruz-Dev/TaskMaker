@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TouchableOpacity, Text, ActivityIndicator, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import colors from 'res/colors.json';
 import { Context } from '../Theme';
 
@@ -7,14 +7,12 @@ const Button = (props) => {
     let c = useContext(Context);
     c = c || {};
     return (
-        props.loading ?
-            <TouchableOpacity style={[styles.buttonStyle, { backgroundColor: c.bgDark || colors.red }]}>
-                <ActivityIndicator color={c.textColor || colors.white} size='small' />
-                <Text style={[styles.textStyle, { color: c.textColor || colors.white }]}>wait</Text>
-            </TouchableOpacity> :
-            <TouchableOpacity onPress={props.onPress} style={[styles.buttonStyle, { backgroundColor: c.bgDark || colors.button, }]}>
-                <Text style={[styles.textStyle, { color: c.textColor || colors.white, }]}>{props.children}</Text>
-            </TouchableOpacity >
+        <TouchableOpacity
+            onPress={props.onPress}
+            activeOpacity={0.8}
+            style={[styles.buttonStyle, { backgroundColor: c.bgDark || colors.button, }]}>
+            <Text style={[styles.textStyle, { color: c.textColor || colors.white, }]}>{props.children}</Text>
+        </TouchableOpacity >
     );
 }
 
@@ -29,7 +27,7 @@ const styles = StyleSheet.create({
         right: 0,
         borderRadius: 30,
         paddingVertical: 12,
-        elevation: 3,
+        // elevation: 3,
         justifyContent: 'center',
         alignItems: 'center',
     },

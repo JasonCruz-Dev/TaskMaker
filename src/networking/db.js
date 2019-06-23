@@ -5,6 +5,9 @@ const createUser = async (name, email, password) => {
     try {
         let response = await fetch(`${index}/users`, {
             method: 'POST',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+            }),
             body: JSON.stringify({ name, email, password })
         });
         let data = await response.json(); //expect user and token
@@ -23,6 +26,9 @@ const loginUser = async (email, password) => {
     try {
         let response = await fetch(`${index}/users/login`, {
             method: 'POST',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+            }),
             body: JSON.stringify({ email, password })
         });
         let data = await response.json(); //expect user and token
@@ -43,6 +49,7 @@ const logoutUser = async () => {
         let response = await fetch(`${index}/users/logout`, {
             method: 'POST',
             headers: new Headers({
+                'Content-Type': 'application/json',
                 'Authorization': 'Basic ' + userToken,
             }),
         });
@@ -62,6 +69,7 @@ const logoutAllSession = async () => {
         let response = await fetch(`${index}/users/logoutAll`, {
             method: 'POST',
             headers: new Headers({
+                'Content-Type': 'application/json',
                 'Authorization': 'Basic ' + userToken,
             }),
         });
@@ -81,6 +89,7 @@ const readUser = async () => {
         let response = await fetch(`${index}/users/me`, {
             method: 'GET',
             headers: new Headers({
+                'Content-Type': 'application/json',
                 'Authorization': 'Basic ' + userToken,
             }),
         });
@@ -99,6 +108,7 @@ const updateUser = async (object) => {
         let response = await fetch(`${index}/users/me`, {
             method: 'PATCH',
             headers: new Headers({
+                'Content-Type': 'application/json',
                 'Authorization': 'Basic ' + userToken,
             }),
             body: JSON.stringify(object)
@@ -118,6 +128,7 @@ const deleteUser = async () => {
         let response = await fetch(`${index}/users/me`, {
             method: 'DELETE',
             headers: new Headers({
+                'Content-Type': 'application/json',
                 'Authorization': 'Basic ' + userToken,
             }),
             body: JSON.stringify(object)
@@ -153,6 +164,26 @@ const uploadAvatar = async (image) => {
     }
 }
 
+const syncTask = async (tasks) => {
+    try {
+        let userToken = await AsyncStorage.getItem('userToken');
+        let response = await fetch(`${index}/tasks/sync/me`, {
+            method: 'POST',
+            headers: new Headers({
+                'Authorization': 'Basic ' + userToken,
+                "Content-Type": "application/json",
+            }),
+            body: JSON.stringify(tasks)
+        });
+        let data = await response.json();
+        if (data) {
+            return data;
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 module.exports = {
     createUser,
     loginUser,
@@ -161,5 +192,6 @@ module.exports = {
     readUser,
     updateUser,
     deleteUser,
-    uploadAvatar
+    uploadAvatar,
+    syncTask
 }
