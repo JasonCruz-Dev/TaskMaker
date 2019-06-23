@@ -8,8 +8,7 @@ const MoreOptionItem = (props) => {
     return (
         <TouchableOpacity
             style={styles.container}
-            onPress={props.onPress}
-        >
+            onPress={props.onPress}>
             {props.icon}
             <Text style={[styles.text, { color: c.textColor }]}>
                 {props.children}
