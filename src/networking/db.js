@@ -167,7 +167,7 @@ const uploadAvatar = async (image) => {
 const syncTask = async (tasks) => {
     try {
         let userToken = await AsyncStorage.getItem('userToken');
-        let response = await fetch(`${index}/tasks/sync/me`, {
+        let response = await fetch(`${index}/tasks/sync`, {
             method: 'POST',
             headers: new Headers({
                 'Authorization': 'Basic ' + userToken,

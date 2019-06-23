@@ -86,13 +86,13 @@ MERGED from [com.facebook.soloader:soloader:0.6.0] C:\Users\Mohd Shad Mirza\.gra
 	tools:ignore
 		ADDED from C:\react\TaskMaker\android\app\src\debug\AndroidManifest.xml:7:75-114
 	android:roundIcon
-		ADDED from C:\react\TaskMaker\android\app\src\main\AndroidManifest.xml:10:7-52
-		ADDED from C:\react\TaskMaker\android\app\src\main\AndroidManifest.xml:10:7-52
+		ADDED from C:\react\TaskMaker\android\app\src\main\AndroidManifest.xml:10:7-50
+		ADDED from C:\react\TaskMaker\android\app\src\main\AndroidManifest.xml:10:7-50
 	tools:targetApi
 		ADDED from C:\react\TaskMaker\android\app\src\debug\AndroidManifest.xml:7:54-74
 	android:icon
-		ADDED from C:\react\TaskMaker\android\app\src\main\AndroidManifest.xml:9:7-41
-		ADDED from C:\react\TaskMaker\android\app\src\main\AndroidManifest.xml:9:7-41
+		ADDED from C:\react\TaskMaker\android\app\src\main\AndroidManifest.xml:9:7-45
+		ADDED from C:\react\TaskMaker\android\app\src\main\AndroidManifest.xml:9:7-45
 	android:allowBackup
 		ADDED from C:\react\TaskMaker\android\app\src\main\AndroidManifest.xml:11:7-34
 		ADDED from C:\react\TaskMaker\android\app\src\main\AndroidManifest.xml:11:7-34

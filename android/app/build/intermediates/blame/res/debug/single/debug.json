@@ -136,12 +136,12 @@
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-mdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
-        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
-        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-xxhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
-    },
-    {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_redbox_item_title.xml.flat",
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\e96e6292c06f9fbcb7fe6000ecb81fe5\\res\\layout\\redbox_item_title.xml"
+    },
+    {
+        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
+        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-xxhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
     },
     {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_popup_background_mtrl_mult.9.png.flat",
@@ -160,12 +160,12 @@
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-xhdpi-v4\\abc_textfield_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_textfield_search_default_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-hdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png"
-    },
-    {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_half_black_48dp.png.flat",
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-hdpi-v4\\abc_ic_star_half_black_48dp.png"
+    },
+    {
+        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_textfield_search_default_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-hdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
@@ -208,12 +208,12 @@
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\e96e6292c06f9fbcb7fe6000ecb81fe5\\res\\anim\\catalyst_fade_in.xml"
     },
     {
-        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
-        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-mdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png"
-    },
-    {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-xxhdpi-v4\\abc_ic_menu_selectall_mtrl_alpha.png"
+    },
+    {
+        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
+        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-mdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png"
     },
     {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
@@ -376,12 +376,12 @@
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable\\abc_ic_menu_overflow_material.xml"
     },
     {
-        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-xhdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
-    },
-    {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_list_focused_holo.9.png.flat",
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-xxhdpi-v4\\abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-xhdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
     },
     {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v16_notification_template_custom_big.xml.flat",
@@ -552,12 +552,12 @@
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-hdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
     },
     {
-        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_divider_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-mdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_background_cache_hint_selector_material_light.xml.flat",
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\color\\abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_divider_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-mdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
     },
     {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
@@ -584,12 +584,12 @@
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-xxhdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
-        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_screen_simple_overlay_action_mode.xml.flat",
-        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
-    },
-    {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_commit_search_api_mtrl_alpha.png.flat",
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-hdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_screen_simple_overlay_action_mode.xml.flat",
+        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
     },
     {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
@@ -688,24 +688,28 @@
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-ldrtl-hdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
-        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
-        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-xxhdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
-    },
-    {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_popup_background_mtrl_mult.9.png.flat",
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-hdpi-v4\\abc_popup_background_mtrl_mult.9.png"
+    },
+    {
+        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
+        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-xxhdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
     },
     {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_star_black_16dp.png.flat",
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-mdpi-v4\\abc_ic_star_black_16dp.png"
     },
     {
+        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
+        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-mdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_black_36dp.png.flat",
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-xxhdpi-v4\\abc_ic_star_black_36dp.png"
     },
     {
-        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
-        "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-mdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
+        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_new.png.flat",
+        "source": "C:\\react\\TaskMaker\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_new.png"
     },
     {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notification_icon_background.xml.flat",
@@ -1124,6 +1128,10 @@
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-xhdpi-v4\\abc_list_focused_holo.9.png"
     },
     {
+        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_new.png.flat",
+        "source": "C:\\react\\TaskMaker\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_new.png"
+    },
+    {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_abc_list_divider_material.xml.flat",
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-v21\\abc_list_divider_material.xml"
     },
@@ -1246,6 +1254,10 @@
     {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-hdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-ldrtl-hdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_new.png.flat",
+        "source": "C:\\react\\TaskMaker\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_new.png"
     },
     {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_secondary_text_material_dark.xml.flat",
@@ -1472,6 +1484,10 @@
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-xxhdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png"
     },
     {
+        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_new.png.flat",
+        "source": "C:\\react\\TaskMaker\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_new.png"
+    },
+    {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\a2f149da09c46c622766669bd9f942ab\\res\\drawable-xxxhdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
     },
@@ -1538,6 +1554,10 @@
     {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_normal.9.png.flat",
         "source": "C:\\Users\\Mohd Shad Mirza\\.gradle\\caches\\transforms-2\\files-2.1\\24d6ad6fe0c305ecc01bc78215a44f9b\\res\\drawable-xhdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_new.png.flat",
+        "source": "C:\\react\\TaskMaker\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_new.png"
     },
     {
         "merged": "C:\\react\\TaskMaker\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_text_select_handle_middle_mtrl_light.png.flat",

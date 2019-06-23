@@ -1,10 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { saveThemeInfo } from '../../actions'
 import AsyncStorage from '@react-native-community/async-storage';
 import colors from 'res/colors.json';
-import Feather from 'react-native-vector-icons/Feather';
 import Theme from '../Theme';
 
 class Splash extends React.Component {
@@ -15,23 +14,24 @@ class Splash extends React.Component {
         }
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         this.props.saveThemeInfo();
-        let userToken = await AsyncStorage.getItem('userToken');
-        console.log({ userToken })
-        if (userToken) {
-            this.props.navigation.navigate('Home');
-        } else {
-            this.props.navigation.navigate('Auth');
-        }
+        setTimeout(async () => {
+            let userToken = await AsyncStorage.getItem('userToken');
+            if (userToken) {
+                this.props.navigation.navigate('Home');
+            } else {
+                this.props.navigation.navigate('Auth');
+            }
+        }, 2000);
     }
 
     render() {
         return (
             <Theme name='red'>
                 <View style={styles.container}>
-                    <Feather name='check-circle' size={60} color={colors.red} />
-                    <Text style={styles.text}>Task Maker</Text>
+                    <Image source={require('res/checklist.png')} resizeMode='contain' style={{ width: 100, height: 100 }} />
+                    <Text style={styles.text}>ToDo List Maker</Text>
                 </View>
             </Theme>
         );
