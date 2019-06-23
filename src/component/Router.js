@@ -30,7 +30,7 @@ const Router = createSwitchNavigator({
     Test: HomeScreen
 },
     {
-        initialRouteName: 'Test',
+        initialRouteName: 'Splash',
     },
 );
 

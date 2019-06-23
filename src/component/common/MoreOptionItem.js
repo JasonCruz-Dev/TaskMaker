@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { Context } from '../Theme';
 
 const MoreOptionItem = (props) => {
@@ -17,7 +17,7 @@ const MoreOptionItem = (props) => {
     );
 }
 
-const styles = {
+const styles = StyleSheet.create({
     container: {
         left: 0, right: 0,
         flexDirection: 'row',
@@ -28,6 +28,6 @@ const styles = {
         fontSize: 16,
         marginLeft: 10,
     }
-}
+});
 
 export { MoreOptionItem };

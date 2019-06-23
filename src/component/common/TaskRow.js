@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from 'res/colors.json';
 
 const TaskRow = (props) => {
     return (
-        <View style={styles.constainerStyle}>
+        <View style={styles.container}>
             {props.done ?
                 <TouchableOpacity onPress={props.onCheckPress}>
                     <Ionicons name='ios-checkmark-circle' size={20} color={colors.grey} />
@@ -22,8 +22,8 @@ const TaskRow = (props) => {
     );
 }
 
-const styles = {
-    constainerStyle: {
+const styles = StyleSheet.create({
+    container: {
         elevation: 1,
         padding: 10,
         flexDirection: 'row',
@@ -36,5 +36,6 @@ const styles = {
         flex: 1,
     },
 }
+);
 
 export { TaskRow };

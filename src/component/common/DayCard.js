@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import colors from 'res/colors.json';
 import { Context } from '../Theme';
@@ -17,7 +17,7 @@ const DayCard = (props) => {
     );
 }
 
-const styles = {
+const styles = StyleSheet.create({
     container: {
         elevation: 1,
         padding: 10,
@@ -32,6 +32,6 @@ const styles = {
     icon: {
         padding: 5
     }
-}
+});
 
 export { DayCard };

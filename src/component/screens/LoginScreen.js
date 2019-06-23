@@ -59,16 +59,13 @@ class LoginScreen extends React.Component {
 
     renderLogo() {
         return (
-            <KeyboardAvoidingView behavior='padding' style={{ paddingVertical: 10, }}>
+            <KeyboardAvoidingView behavior='padding' style={styles.logoContainer}>
                 <Card>
                     <View style={styles.logo}>
-                        <Feather name='check-circle' size={40} color={colors.red} />
+                        <Feather name='check-circle' size={30} color={colors.red} />
                         <Text style={styles.text}>Task Maker</Text>
                     </View>
-                </Card>
-                <Card>
-                    <Text style={styles.hello}>Hello!</Text>
-                    <Text style={styles.hello}>Let's start a better Life</Text>
+                    <Text style={styles.hello}>Hey there, Let's get onboard!</Text>
                 </Card>
             </KeyboardAvoidingView>
         );
@@ -76,18 +73,16 @@ class LoginScreen extends React.Component {
 
     renderForm() {
         return (
-            <KeyboardAvoidingView behavior='padding' style={{ paddingVertical: 20, }}>
-                {this.state.login ? null :
-                    <Card>
+            <View>
+                <Card>
+                    {this.state.login ? null :
                         <TextInput
                             placeholder="Your Name"
                             placeholderTextColor={colors.lightRed}
                             style={styles.textInput}
                             value={this.state.name}
                             onChangeText={(name) => this.setState({ name })}
-                        />
-                    </Card>}
-                <Card>
+                        />}
                     <TextInput
                         placeholder="Email"
                         placeholderTextColor={colors.lightRed}
@@ -96,8 +91,6 @@ class LoginScreen extends React.Component {
                         keyboardType='email-address'
                         onChangeText={(email) => this.setState({ email })}
                     />
-                </Card>
-                <Card>
                     <TextInput
                         placeholder="Password"
                         placeholderTextColor={colors.lightRed}
@@ -116,7 +109,7 @@ class LoginScreen extends React.Component {
                         </Button>
                     </View>
                 </Card>
-            </KeyboardAvoidingView>
+            </View>
         );
     }
     render() {
@@ -156,23 +149,26 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '500',
         color: colors.red,
-        marginHorizontal: 10,
+        marginHorizontal: 5,
+    },
+    logoContainer: {
+        flex: 1, justifyContent: 'center', alignItems: 'center'
     },
     logo: {
         flexDirection: 'row',
         alignItems: 'center',
     },
     hello: {
-        fontSize: 26,
+        fontSize: 22,
         fontWeight: '500',
         color: colors.red,
+        padding: 5
     },
     textInput: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: '500',
         color: colors.red,
-        paddingHorizontal: 5,
-        paddingVertical: 10,
+        padding: 5,
         borderBottomWidth: 1,
         borderBottomColor: colors.red
     },

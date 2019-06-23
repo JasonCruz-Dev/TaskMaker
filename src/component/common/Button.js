@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TouchableOpacity, Text, ActivityIndicator } from 'react-native';
+import { TouchableOpacity, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import colors from 'res/colors.json';
 import { Context } from '../Theme';
 
@@ -18,21 +18,21 @@ const Button = (props) => {
     );
 }
 
-const styles = {
+const styles = StyleSheet.create({
     textStyle: {
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: '500',
-        paddingHorizontal: 10
+        paddingHorizontal: 5
     },
     buttonStyle: {
         left: 0,
         right: 0,
         borderRadius: 30,
         paddingVertical: 12,
-        elevation: 5,
+        elevation: 3,
         justifyContent: 'center',
         alignItems: 'center',
     },
-}
+});
 
 export { Button };

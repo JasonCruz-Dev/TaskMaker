@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { StatusBar } from 'react-native';
 import { Context } from '../Theme';
 
-const TopBar = (props) => {
+const TopBar = () => {
     let c = useContext(Context);
     c = c || {};
     return (
