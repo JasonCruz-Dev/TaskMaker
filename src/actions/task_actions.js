@@ -3,7 +3,12 @@ import { ADD_TASK, MARK_DONE, UNDO_DONE, DELETE_TASK, CLEAR_COMPLETED } from './
 export const addTasks = (task, day, callback) => async dispatch => {
     let collection = {};
     collection.description = task;
-    collection.day = day;
+    if (day === 'today') {
+        const today = new Date();
+        collection.day = today.toLocaleDateString();
+    } else {
+        collection.day = day;
+    }
     collection.completed = false;
     dispatch({
         type: ADD_TASK,

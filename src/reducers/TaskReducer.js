@@ -8,6 +8,7 @@ export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case ADD_TASK:
             const array = [action.payload, ...state.taskArray];
+            console.log({ array });
             return { ...state, taskArray: array };
 
         case MARK_DONE:

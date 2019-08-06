@@ -26,6 +26,7 @@ class LoginScreen extends React.Component {
     async onLoginPress() {
         const { email, password } = this.state;
         if (email === '' || password === '') { return; }
+        Keyboard.dismiss();
         this.setState({ loading: true });
         let token = await db.loginUser(email, password);
         if (token === 'bad request') {
@@ -46,6 +47,13 @@ class LoginScreen extends React.Component {
     async onSignUpPress() {
         const { name, email, password } = this.state;
         if (email === '' || password === '' || name === '') { return; }
+        if (password.length < 7) {
+            if (Platform.OS == 'android') {
+                ToastAndroid.show('Password must be 8 digit or more', ToastAndroid.LONG);
+                return this.setState({ loading: false });
+            }
+        }
+        Keyboard.dismiss();
         this.setState({ loading: true });
         let token = await db.createUser(name, email, password);
         console.log({ token });
@@ -171,7 +179,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '500',
         color: colors.red,
-        padding: 5,
+        paddingHorizontal: 5,
+        paddingVertical: 10,
         borderBottomWidth: 1,
         borderBottomColor: colors.red
     },
@@ -179,7 +188,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 10,
+        paddingTop: 5,
+        paddingBottom: 15
     },
     bottomText: {
         fontSize: 16,

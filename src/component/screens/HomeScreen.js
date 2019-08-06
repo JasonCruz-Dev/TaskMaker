@@ -33,32 +33,21 @@ class HomeScreen extends React.Component {
         if (!this.state.showMoreOption) { return; }
         return (
             <View style={[styles.moreOptions, { backgroundColor: value.bgLight }]}>
-                <MoreOptionItem icon={<AntDesign name='sync' size={15} color={value.textColor} />}>
+                <MoreOptionItem icon={<AntDesign name='sync' size={16} color={value.textColor} />}>
                     Sync
                 </MoreOptionItem>
                 <MoreOptionItem
-                    icon={<MaterialIcons name='style' size={18} color={value.textColor} />}
+                    icon={<MaterialIcons name='style' size={20} color={value.textColor} />}
                     onPress={() => this.setState({ showMoreOption: false, showThemeChooser: true })}>
                     Theme
                 </MoreOptionItem>
-                <MoreOptionItem
-                    icon={<AntDesign name='closecircleo' size={15} color={value.textColor} />}
-                    onPress={() => {
-                        this.props.clearCompleted();
-                        this.setState({ showMoreOption: false });
-                    }}>
-                    Clear completed
-                </MoreOptionItem>
-                <MoreOptionItem icon={<AntDesign name='setting' size={18} color={value.textColor} />}>
-                    Settings
-                </MoreOptionItem>
                 <View style={styles.darkModeChooser}>
-                    <Text style={{ color: value.textColor, fontSize: 16 }}>Dark Mode</Text>
                     <Switch
                         thumbColor={value.textColor}
                         value={this.props.darkMode}
                         onValueChange={(value) => this.props.toggleDarkMode(value)}
                     />
+                    <Text style={{ color: value.textColor, fontSize: 16 }}>Dark Mode</Text>
                 </View>
             </View>
         );
@@ -79,6 +68,7 @@ class HomeScreen extends React.Component {
             <Theme name={this.props.theme} bg={this.props.darkMode ? 'dark' : 'light'}>
                 <Context.Consumer>
                     {value => {
+                        const today = new Date();
                         return <View style={[styles.container, { backgroundColor: value.bgDark }]}>
                             <TopBar />
                             <Header right='more' onPress={() => this.setState({ showMoreOption: true })}>
@@ -90,7 +80,7 @@ class HomeScreen extends React.Component {
                                         Today
                                     </DayCard>
                                     <TaskList
-                                        data={this.props.taskArray.filter(task => task.day === 'today')}
+                                        data={this.props.taskArray.filter(task => task.day === today.toLocaleDateString())}
                                         onPress={(task) => this.props.markDone(task)}
                                         onClose={(task) => this.props.deleteTask(task)}
                                         onCheckPress={(task) => this.props.undoDone(task)}
@@ -99,12 +89,12 @@ class HomeScreen extends React.Component {
                                         Draft
                                     </DayCard>
                                     <TaskList
-                                        data={this.props.taskArray.filter(task => task.day === 'draft')}
+                                        data={this.props.taskArray.filter(task => task.day !== today.toLocaleDateString())}
                                         onPress={(task) => this.props.markDone(task)}
                                         onClose={(task) => this.props.deleteTask(task)}
                                         onCheckPress={(task) => this.props.undoDone(task)}
                                     />
-                                    <ActionButton onPress={() => this.onPress('today')} />
+                                    <ActionButton onPress={() => this.onPress('draft')} />
                                 </View>
                             </TouchableWithoutFeedback>
                             {this.renderMoreOption(value)}
@@ -150,7 +140,7 @@ const styles = {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingTop: 5
+        paddingTop: 5,
     }
 };
 

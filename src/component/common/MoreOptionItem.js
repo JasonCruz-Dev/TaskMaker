@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import { Context } from '../Theme';
 
 const MoreOptionItem = (props) => {
@@ -9,7 +9,9 @@ const MoreOptionItem = (props) => {
         <TouchableOpacity
             style={styles.container}
             onPress={props.onPress}>
-            {props.icon}
+            <View style={styles.icon}>
+                {props.icon}
+            </View>
             <Text style={[styles.text, { color: c.textColor }]}>
                 {props.children}
             </Text>
@@ -21,12 +23,15 @@ const styles = StyleSheet.create({
     container: {
         left: 0, right: 0,
         flexDirection: 'row',
-        padding: 5,
-        alignItems: 'center'
+        paddingVertical: 10,
+        paddingHorizontal: 5,
+        alignItems: 'center',
     },
     text: {
         fontSize: 16,
-        marginLeft: 10,
+    },
+    icon: {
+        width: 40
     }
 });
 

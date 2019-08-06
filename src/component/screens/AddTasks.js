@@ -34,7 +34,7 @@ class AddTasks extends React.Component {
                                 <Header backEnabled navigation={this.props.navigation}>ADD TASK</Header>
                                 <TextInput
                                     placeholder="Enter your task here"
-                                    placeholderTextColor={value.textColor}
+                                    placeholderTextColor={value.phColor}
                                     autoFocus
                                     style={[styles.textInput, { color: value.textColor, borderBottomColor: value.textColor }]}
                                     value={this.state.task}

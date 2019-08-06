@@ -8,7 +8,7 @@ MERGED from C:\react\TaskMaker\android\app\src\main\AndroidManifest.xml:1:1-26:1
 MERGED from [:react-native-vector-icons] C:\react\TaskMaker\node_modules\react-native-vector-icons\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [:@react-native-community_async-storage] C:\react\TaskMaker\node_modules\@react-native-community\async-storage\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-gesture-handler] C:\react\TaskMaker\node_modules\react-native-gesture-handler\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
-MERGED from [com.facebook.react:react-native:0.59.9] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\e96e6292c06f9fbcb7fe6000ecb81fe5\AndroidManifest.xml:2:1-13:12
+MERGED from [com.facebook.react:react-native:0.59.10] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\389c1ca953a14c791376c81f6e10f548\AndroidManifest.xml:2:1-13:12
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\a2f149da09c46c622766669bd9f942ab\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\a8fb2a076712885f0d570999df2c6d1d\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\67828714857b33feb792790d0f745d53\AndroidManifest.xml:17:1-22:12
@@ -70,8 +70,8 @@ application
 ADDED from C:\react\TaskMaker\android\app\src\main\AndroidManifest.xml:6:5-24:19
 MERGED from C:\react\TaskMaker\android\app\src\main\AndroidManifest.xml:6:5-24:19
 MERGED from C:\react\TaskMaker\android\app\src\main\AndroidManifest.xml:6:5-24:19
-MERGED from [com.facebook.react:react-native:0.59.9] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\e96e6292c06f9fbcb7fe6000ecb81fe5\AndroidManifest.xml:11:5-20
-MERGED from [com.facebook.react:react-native:0.59.9] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\e96e6292c06f9fbcb7fe6000ecb81fe5\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.react:react-native:0.59.10] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\389c1ca953a14c791376c81f6e10f548\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.react:react-native:0.59.10] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\389c1ca953a14c791376c81f6e10f548\AndroidManifest.xml:11:5-20
 MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\24d6ad6fe0c305ecc01bc78215a44f9b\AndroidManifest.xml:22:5-94
 MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\24d6ad6fe0c305ecc01bc78215a44f9b\AndroidManifest.xml:22:5-94
 MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\788f933e0ed3aeecb7b1fb059539c408\AndroidManifest.xml:22:5-23:19
@@ -138,8 +138,8 @@ MERGED from [:@react-native-community_async-storage] C:\react\TaskMaker\node_mod
 MERGED from [:@react-native-community_async-storage] C:\react\TaskMaker\node_modules\@react-native-community\async-storage\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-gesture-handler] C:\react\TaskMaker\node_modules\react-native-gesture-handler\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-gesture-handler] C:\react\TaskMaker\node_modules\react-native-gesture-handler\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.react:react-native:0.59.9] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\e96e6292c06f9fbcb7fe6000ecb81fe5\AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.react:react-native:0.59.9] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\e96e6292c06f9fbcb7fe6000ecb81fe5\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native:0.59.10] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\389c1ca953a14c791376c81f6e10f548\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native:0.59.10] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\389c1ca953a14c791376c81f6e10f548\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\a2f149da09c46c622766669bd9f942ab\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\a2f149da09c46c622766669bd9f942ab\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Mohd Shad Mirza\.gradle\caches\transforms-2\files-2.1\a8fb2a076712885f0d570999df2c6d1d\AndroidManifest.xml:20:5-44
