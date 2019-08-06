@@ -6,6 +6,7 @@ import {
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import _ from 'lodash';
+import db from '../../networking/db';
 import { DayCard, MoreOptionItem, Header, TopBar, ActionButton, ThemeChooser, TaskList } from '../common';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -29,6 +30,12 @@ class HomeScreen extends React.Component {
         this.props.navigation.navigate('AddTasks', { day });
     }
 
+    async logoutUser() {
+        const response = await db.logoutUser();
+        if (response)
+            this.props.navigation.navigate('Auth');
+    }
+
     renderMoreOption(value) {
         if (!this.state.showMoreOption) { return; }
         return (
@@ -40,6 +47,11 @@ class HomeScreen extends React.Component {
                     icon={<MaterialIcons name='style' size={20} color={value.textColor} />}
                     onPress={() => this.setState({ showMoreOption: false, showThemeChooser: true })}>
                     Theme
+                </MoreOptionItem>
+                <MoreOptionItem
+                    icon={<AntDesign name='logout' size={20} color={value.textColor} />}
+                    onPress={() => this.logoutUser()}>
+                    Log out
                 </MoreOptionItem>
                 <View style={styles.darkModeChooser}>
                     <Switch

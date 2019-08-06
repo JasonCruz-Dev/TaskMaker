@@ -1,6 +1,11 @@
 import AsyncStorage from '@react-native-community/async-storage';
 const index = 'https://shad-task-manager.herokuapp.com';
 
+const getToken = async () => {
+    let userToken = await AsyncStorage.getItem('userToken');
+    return userToken;
+}
+
 const createUser = async (name, email, password) => {
     try {
         let response = await fetch(`${index}/users`, {
@@ -31,7 +36,9 @@ const loginUser = async (email, password) => {
             }),
             body: JSON.stringify({ email, password })
         });
+        console.log({ response })
         let data = await response.json(); //expect user and token
+
         if (data.errmsg) {
             return 'bad request';
         } else {
@@ -45,7 +52,7 @@ const loginUser = async (email, password) => {
 
 const logoutUser = async () => {
     try {
-        let userToken = await AsyncStorage.getItem('userToken');
+        let userToken = await getToken();
         let response = await fetch(`${index}/users/logout`, {
             method: 'POST',
             headers: new Headers({
@@ -54,6 +61,7 @@ const logoutUser = async () => {
             }),
         });
         if (response) {
+            await AsyncStorage.removeItem('userToken');
             return true;
         } else {
             return false;
@@ -65,7 +73,7 @@ const logoutUser = async () => {
 
 const logoutAllSession = async () => {
     try {
-        let userToken = await AsyncStorage.getItem('userToken');
+        let userToken = await getToken();
         let response = await fetch(`${index}/users/logoutAll`, {
             method: 'POST',
             headers: new Headers({
@@ -85,7 +93,7 @@ const logoutAllSession = async () => {
 
 const readUser = async () => {
     try {
-        let userToken = await AsyncStorage.getItem('userToken');
+        let userToken = await getToken();
         let response = await fetch(`${index}/users/me`, {
             method: 'GET',
             headers: new Headers({
@@ -124,7 +132,7 @@ const updateUser = async (object) => {
 
 const deleteUser = async () => {
     try {
-        let userToken = await AsyncStorage.getItem('userToken');
+        let userToken = await getToken();
         let response = await fetch(`${index}/users/me`, {
             method: 'DELETE',
             headers: new Headers({
@@ -146,7 +154,7 @@ const uploadAvatar = async (image) => {
     let imageData = new FormData();
     imageData.append('avatar', image)
     try {
-        let userToken = await AsyncStorage.getItem('userToken');
+        let userToken = await getToken();
         let response = await fetch(`${index}/users/me/avatar`, {
             method: 'POST',
             headers: new Headers({
@@ -166,7 +174,7 @@ const uploadAvatar = async (image) => {
 
 const syncTask = async (tasks) => {
     try {
-        let userToken = await AsyncStorage.getItem('userToken');
+        let userToken = await getToken();
         let response = await fetch(`${index}/tasks/sync`, {
             method: 'POST',
             headers: new Headers({

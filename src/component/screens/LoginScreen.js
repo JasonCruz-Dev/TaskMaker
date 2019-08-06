@@ -46,11 +46,17 @@ class LoginScreen extends React.Component {
 
     async onSignUpPress() {
         const { name, email, password } = this.state;
-        if (email === '' || password === '' || name === '') { return; }
+        if (email === '' || password === '' || name === '') {
+            Keyboard.dismiss();
+            if (Platform.OS == 'android') {
+                ToastAndroid.show('Please enter all the details', ToastAndroid.LONG);
+                return;
+            }
+        }
         if (password.length < 7) {
             if (Platform.OS == 'android') {
                 ToastAndroid.show('Password must be 8 digit or more', ToastAndroid.LONG);
-                return this.setState({ loading: false });
+                return;
             }
         }
         Keyboard.dismiss();
