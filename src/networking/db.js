@@ -172,7 +172,7 @@ const uploadAvatar = async (image) => {
     }
 }
 
-const syncTask = async (tasks) => {
+const syncTasks = async (tasks) => {
     try {
         let userToken = await getToken();
         let response = await fetch(`${index}/tasks/sync`, {
@@ -183,7 +183,24 @@ const syncTask = async (tasks) => {
             }),
             body: JSON.stringify(tasks)
         });
-        let data = await response.json();
+        let { message } = await response.json(); //expect message: "success"
+        return message;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+const getAllTasks = async () => {
+    try {
+        let userToken = await getToken();
+        let response = await fetch(`${index}/tasks`, {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic ' + userToken,
+            }),
+        });
+        let data = await response.json(); //expect an array
         if (data) {
             return data;
         }
@@ -201,5 +218,6 @@ module.exports = {
     updateUser,
     deleteUser,
     uploadAvatar,
-    syncTask
+    syncTasks,
+    getAllTasks
 }

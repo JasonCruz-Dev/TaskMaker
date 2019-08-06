@@ -1,4 +1,4 @@
-import { ADD_TASK, MARK_DONE, UNDO_DONE, DELETE_TASK, CLEAR_COMPLETED } from './types';
+import { ADD_TASK, MARK_DONE, UNDO_DONE, DELETE_TASK, CLEAR_COMPLETED, REFRESH_TASKS } from './types';
 
 export const addTasks = (task, day, callback) => async dispatch => {
     let collection = {};
@@ -16,6 +16,13 @@ export const addTasks = (task, day, callback) => async dispatch => {
     });
     callback();
 };
+
+export const refressTasks = (taskArray) => {
+    return {
+        type: REFRESH_TASKS,
+        payload: taskArray
+    }
+}
 
 export const markDone = (task) => async dispatch => {
     dispatch({

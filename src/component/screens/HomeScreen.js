@@ -1,13 +1,15 @@
 import React from 'react';
 import {
-    View, Text,
-    Switch, TouchableWithoutFeedback, Dimensions
+    View,
+    Text,
+    Switch,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import _ from 'lodash';
 import db from '../../networking/db';
-import { DayCard, MoreOptionItem, Header, TopBar, ActionButton, ThemeChooser, TaskList } from '../common';
+import { DayCard, MoreOptionItem, Header, TopBar, ActionButton, ThemeChooser, TaskList, Loader } from '../common';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from 'res/colors.json';
@@ -19,7 +21,7 @@ class HomeScreen extends React.Component {
         showchooseThemeView: false,
         showMoreOption: false,
         showThemeChooser: false,
-        width: Dimensions.get('window').width,
+        loading: false
     }
 
     componentWillMount() {
@@ -31,16 +33,35 @@ class HomeScreen extends React.Component {
     }
 
     async logoutUser() {
+        this.setState({ loading: true });
         const response = await db.logoutUser();
-        if (response)
+        if (response) {
+            this.setState({ loading: false });
             this.props.navigation.navigate('Auth');
+        }
+    }
+
+    async syncTasks() {
+        this.setState({ loading: true });
+        const { taskArray } = this.props;
+        const message = await db.syncTasks(taskArray);
+        if (message) {
+            //fetch all task
+            const tasks = await db.getAllTasks();
+            this.props.refreshTasks(tasks);
+            this.setState({ loading: false });
+        } else {
+            this.setState({ loading: false });
+        }
     }
 
     renderMoreOption(value) {
         if (!this.state.showMoreOption) { return; }
         return (
             <View style={[styles.moreOptions, { backgroundColor: value.bgLight }]}>
-                <MoreOptionItem icon={<AntDesign name='sync' size={16} color={value.textColor} />}>
+                <MoreOptionItem
+                    icon={<AntDesign name='sync' size={16} color={value.textColor} />}
+                    onPress={() => this.syncTasks()}>
                     Sync
                 </MoreOptionItem>
                 <MoreOptionItem
@@ -111,6 +132,7 @@ class HomeScreen extends React.Component {
                             </TouchableWithoutFeedback>
                             {this.renderMoreOption(value)}
                             {this.renderThemeChooser()}
+                            {this.state.loading ? <Loader /> : null}
                         </View>
                     }}
                 </Context.Consumer>
