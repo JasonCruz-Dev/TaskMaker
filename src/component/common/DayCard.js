@@ -5,12 +5,15 @@ import colors from 'res/colors.json';
 import { Context } from '../Theme';
 
 const DayCard = (props) => {
+    onPress = () => {
+        props.onPress(props.children);
+    }
     let c = useContext(Context);
     c = c || {};
     return (
         <View style={[styles.container, { backgroundColor: c.bgDark }]}>
             <Text style={[styles.dayText, { color: c.textColor }]}>{props.children}</Text>
-            <TouchableOpacity onPress={props.onPress} style={styles.icon}>
+            <TouchableOpacity onPress={onPress} style={styles.icon}>
                 <Entypo name='plus' size={24} color={c.textColor || colors.red} />
             </TouchableOpacity>
         </View>

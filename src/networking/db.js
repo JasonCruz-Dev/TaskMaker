@@ -60,6 +60,7 @@ const logoutUser = async () => {
                 'Authorization': 'Basic ' + userToken,
             }),
         });
+        console.log({ response })
         if (response) {
             await AsyncStorage.removeItem('userToken');
             return true;
@@ -139,7 +140,6 @@ const deleteUser = async () => {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic ' + userToken,
             }),
-            body: JSON.stringify(object)
         });
         let data = await response.json(); //expect an object with deleted user info
         if (data) {
@@ -175,6 +175,7 @@ const uploadAvatar = async (image) => {
 const syncTasks = async (tasks) => {
     try {
         let userToken = await getToken();
+        console.log({ userToken, tasks })
         let response = await fetch(`${index}/tasks/sync`, {
             method: 'POST',
             headers: new Headers({
@@ -183,6 +184,7 @@ const syncTasks = async (tasks) => {
             }),
             body: JSON.stringify(tasks)
         });
+        console.log({ response })
         let { message } = await response.json(); //expect message: "success"
         return message;
     } catch (error) {

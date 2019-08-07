@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet, ActivityIndicator } from 'react-native';
-import colors from 'res/colors.json';
+import { Context } from '../Theme';
 
 const Loader = () => {
+    let c = useContext(Context);
+    c = c || {};
     return (
         <View style={styles.container}>
-            <ActivityIndicator size='large' color={colors.red} />
+            <ActivityIndicator size='large' color={c.textColor} />
         </View>
     );
 }

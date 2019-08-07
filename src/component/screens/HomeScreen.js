@@ -28,12 +28,12 @@ class HomeScreen extends React.Component {
         this.props.saveThemeInfo();
     }
 
-    onPress(day) {
+    onPress = (day) => {
         this.props.navigation.navigate('AddTasks', { day });
     }
 
-    async logoutUser() {
-        this.setState({ loading: true });
+    logoutUser = async () => {
+        this.setState({ loading: true, showMoreOption: false });
         const response = await db.logoutUser();
         if (response) {
             this.setState({ loading: false });
@@ -41,18 +41,20 @@ class HomeScreen extends React.Component {
         }
     }
 
-    async syncTasks() {
-        this.setState({ loading: true });
+    syncTasks = async () => {
+        console.log('sync')
+        // this.setState({ loading: true, showMoreOption: false });
         const { taskArray } = this.props;
-        const message = await db.syncTasks(taskArray);
-        if (message) {
-            //fetch all task
-            const tasks = await db.getAllTasks();
-            this.props.refreshTasks(tasks);
-            this.setState({ loading: false });
-        } else {
-            this.setState({ loading: false });
-        }
+        console.log(JSON.stringify(taskArray))
+        // const message = await db.syncTasks(taskArray);
+        // if (message) {
+        //     //fetch all task
+        const tasks = await db.getAllTasks();
+        this.props.refreshTasks(tasks);
+        //     this.setState({ loading: false });
+        // } else {
+        //     this.setState({ loading: false });
+        // }
     }
 
     renderMoreOption(value) {
@@ -61,7 +63,7 @@ class HomeScreen extends React.Component {
             <View style={[styles.moreOptions, { backgroundColor: value.bgLight }]}>
                 <MoreOptionItem
                     icon={<AntDesign name='sync' size={16} color={value.textColor} />}
-                    onPress={() => this.syncTasks()}>
+                    onPress={this.syncTasks}>
                     Sync
                 </MoreOptionItem>
                 <MoreOptionItem
@@ -71,7 +73,7 @@ class HomeScreen extends React.Component {
                 </MoreOptionItem>
                 <MoreOptionItem
                     icon={<AntDesign name='logout' size={20} color={value.textColor} />}
-                    onPress={() => this.logoutUser()}>
+                    onPress={this.logoutUser}>
                     Log out
                 </MoreOptionItem>
                 <View style={styles.darkModeChooser}>
@@ -109,7 +111,7 @@ class HomeScreen extends React.Component {
                             </Header>
                             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.setState({ showMoreOption: false })}>
                                 <View style={{ flex: 1 }}>
-                                    <DayCard onPress={() => this.onPress('today')}>
+                                    <DayCard onPress={this.onPress}>
                                         Today
                                     </DayCard>
                                     <TaskList
@@ -118,7 +120,7 @@ class HomeScreen extends React.Component {
                                         onClose={(task) => this.props.deleteTask(task)}
                                         onCheckPress={(task) => this.props.undoDone(task)}
                                     />
-                                    <DayCard onPress={() => this.onPress('draft')}>
+                                    <DayCard onPress={this.onPress}>
                                         Draft
                                     </DayCard>
                                     <TaskList
@@ -127,12 +129,12 @@ class HomeScreen extends React.Component {
                                         onClose={(task) => this.props.deleteTask(task)}
                                         onCheckPress={(task) => this.props.undoDone(task)}
                                     />
-                                    <ActionButton onPress={() => this.onPress('draft')} />
+                                    <ActionButton onPress={this.onPress} />
                                 </View>
                             </TouchableWithoutFeedback>
                             {this.renderMoreOption(value)}
                             {this.renderThemeChooser()}
-                            {this.state.loading ? <Loader /> : null}
+                            {/* {this.state.loading ? <Loader /> : null} */}
                         </View>
                     }}
                 </Context.Consumer>

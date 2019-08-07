@@ -3,7 +3,7 @@ import { ADD_TASK, MARK_DONE, UNDO_DONE, DELETE_TASK, CLEAR_COMPLETED, REFRESH_T
 export const addTasks = (task, day, callback) => async dispatch => {
     let collection = {};
     collection.description = task;
-    if (day === 'today') {
+    if (day === 'Today') {
         const today = new Date();
         collection.day = today.toLocaleDateString();
     } else {
@@ -17,7 +17,7 @@ export const addTasks = (task, day, callback) => async dispatch => {
     callback();
 };
 
-export const refressTasks = (taskArray) => {
+export const refreshTasks = (taskArray) => {
     return {
         type: REFRESH_TASKS,
         payload: taskArray

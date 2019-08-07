@@ -4,11 +4,14 @@ import Entypo from "react-native-vector-icons/Entypo";
 import { Context } from '../Theme';
 
 const ActionButton = (props) => {
+    onPress = () => {
+        props.onPress('Today');
+    }
     let c = useContext(Context);
     c = c || {};
     return (
         <TouchableOpacity style={[styles.actionButton, { backgroundColor: c.textColor }]}
-            onPress={props.onPress}>
+            onPress={onPress}>
             <Entypo name='plus' size={30} color={c.bgLight} />
         </TouchableOpacity>
     );
