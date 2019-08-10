@@ -16,7 +16,6 @@ import {
     TopBar,
     ActionButton,
     ThemeChooser,
-    TaskList,
     Loader
 } from '../common';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -24,6 +23,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from 'res/colors.json';
 import Theme, { Context } from '../Theme';
 import AsyncStorage from '@react-native-community/async-storage';
+import TaskList from '../common/TaskList';
 
 class HomeScreen extends React.Component {
     static contextType = Context;
@@ -74,21 +74,6 @@ class HomeScreen extends React.Component {
         } else {
             this.setState({ loading: false });
         }
-    }
-
-    onMarkDone = (task) => {
-        console.log('mark done', task.description);
-        this.props.markDone(task)
-    }
-
-    onDelete = (task) => {
-        console.log('delete done', task.description);
-        this.props.deleteTask(task)
-    }
-
-    onUnmarkDone = (task) => {
-        console.log('unmark done', task.description);
-        this.props.undoDone(task)
     }
 
     renderMoreOption(value) {
@@ -148,21 +133,15 @@ class HomeScreen extends React.Component {
                                     <DayCard onPress={this.onPress}>
                                         Today
                                     </DayCard>
-                                    <TaskList
-                                        data={this.props.taskArray.filter(task => task.day === today.toLocaleDateString())}
-                                        onPress={(task) => this.props.markDone(task)}
-                                        onClose={(task) => this.props.deleteTask(task)}
-                                        onCheckPress={(task) => this.props.undoDone(task)}
-                                    />
+                                    <TaskList>
+                                        today
+                                    </TaskList>
                                     <DayCard onPress={this.onPress}>
                                         Draft
                                     </DayCard>
-                                    <TaskList
-                                        data={this.props.taskArray.filter(task => task.day !== today.toLocaleDateString())}
-                                        onMarkDone={(task) => this.props.markDone(task)}
-                                        onClose={(task) => this.props.deleteTask(task)}
-                                        onUnmarkDone={(task) => this.props.undoDone(task)}
-                                    />
+                                    <TaskList>
+                                        draft
+                                    </TaskList>
                                     <ActionButton onPress={this.onPress} />
                                 </View>
                             </TouchableWithoutFeedback>
