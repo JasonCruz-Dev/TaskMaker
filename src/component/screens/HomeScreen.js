@@ -23,18 +23,30 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from 'res/colors.json';
 import Theme, { Context } from '../Theme';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class HomeScreen extends React.Component {
     static contextType = Context;
-    state = {
-        showchooseThemeView: false,
-        showMoreOption: false,
-        showThemeChooser: false,
-        loading: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            showchooseThemeView: false,
+            showMoreOption: false,
+            showThemeChooser: false,
+            loading: false
+        }
+        this.props.saveThemeInfo();
     }
 
-    componentWillMount() {
-        this.props.saveThemeInfo();
+    async componentDidMount() {
+        let arrayObject = await AsyncStorage.getItem('tasks');
+        if (arrayObject)
+            this.props.refreshTasks(JSON.parse(arrayObject));
+    }
+
+    async componentWillUnmount() {
+        const { taskArray } = this.props;
+        await AsyncStorage.setItem('tasks', JSON.stringify(taskArray));
     }
 
     onPress = (day) => {
@@ -62,6 +74,21 @@ class HomeScreen extends React.Component {
         } else {
             this.setState({ loading: false });
         }
+    }
+
+    onMarkDone = (task) => {
+        console.log('mark done', task.description);
+        this.props.markDone(task)
+    }
+
+    onDelete = (task) => {
+        console.log('delete done', task.description);
+        this.props.deleteTask(task)
+    }
+
+    onUnmarkDone = (task) => {
+        console.log('unmark done', task.description);
+        this.props.undoDone(task)
     }
 
     renderMoreOption(value) {
@@ -132,9 +159,9 @@ class HomeScreen extends React.Component {
                                     </DayCard>
                                     <TaskList
                                         data={this.props.taskArray.filter(task => task.day !== today.toLocaleDateString())}
-                                        onPress={(task) => this.props.markDone(task)}
+                                        onMarkDone={(task) => this.props.markDone(task)}
                                         onClose={(task) => this.props.deleteTask(task)}
-                                        onCheckPress={(task) => this.props.undoDone(task)}
+                                        onUnmarkDone={(task) => this.props.undoDone(task)}
                                     />
                                     <ActionButton onPress={this.onPress} />
                                 </View>

@@ -13,9 +13,9 @@ const TaskList = (props) => {
                     return (
                         <TaskRow
                             done={item.completed}
-                            onPress={() => props.onPress(item)}
+                            onMarkDone={() => props.onMarkDone(item)}
                             onClose={() => props.onClose(item)}
-                            onCheckPress={() => props.onCheckPress(item)}>
+                            onUnmarkDone={() => props.onUnmarkDone(item)}>
                             {item.description}
                         </TaskRow>
                     );

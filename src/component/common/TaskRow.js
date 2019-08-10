@@ -7,10 +7,10 @@ const TaskRow = (props) => {
     return (
         <View style={styles.container}>
             {props.done ?
-                <TouchableOpacity onPress={props.onCheckPress}>
+                <TouchableOpacity onPress={props.onUnmarkDone}>
                     <Ionicons name='ios-checkmark-circle' size={20} color={colors.grey} />
                 </TouchableOpacity> :
-                <TouchableOpacity onPress={props.onPress}>
+                <TouchableOpacity onPress={props.onMarkDone}>
                     <Ionicons name='ios-radio-button-off' size={20} color={colors.black} />
                 </TouchableOpacity>}
             <Text style={[styles.rowText, props.done ? { textDecorationLine: 'line-through', color: colors.grey } : null]}>{props.children}</Text>
