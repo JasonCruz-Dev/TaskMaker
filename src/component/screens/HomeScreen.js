@@ -57,6 +57,7 @@ class HomeScreen extends React.Component {
         this.setState({ loading: true, showMoreOption: false });
         const response = await db.logoutUser();
         if (response) {
+            this.props.refreshTasks([]);
             this.setState({ loading: false });
             this.props.navigation.navigate('Auth');
         }
@@ -91,6 +92,14 @@ class HomeScreen extends React.Component {
                     Theme
                 </MoreOptionItem>
                 <MoreOptionItem
+                    icon={<AntDesign name='closecircleo' size={15} color={value.textColor} />}
+                    onPress={() => {
+                        this.props.clearCompleted();
+                        this.setState({ showMoreOption: false });
+                    }}>
+                    Clear Completed
+                </MoreOptionItem>
+                <MoreOptionItem
                     icon={<AntDesign name='logout' size={20} color={value.textColor} />}
                     onPress={this.logoutUser}>
                     Log out
@@ -122,7 +131,6 @@ class HomeScreen extends React.Component {
             <Theme name={this.props.theme} bg={this.props.darkMode ? 'dark' : 'light'}>
                 <Context.Consumer>
                     {value => {
-                        const today = new Date();
                         return <View style={[styles.container, { backgroundColor: value.bgDark }]}>
                             <TopBar />
                             <Header right='more' onPress={() => this.setState({ showMoreOption: true })}>
@@ -187,7 +195,6 @@ const styles = {
     },
     darkModeChooser: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
         paddingTop: 5,
     }

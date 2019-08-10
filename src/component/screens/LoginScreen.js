@@ -7,6 +7,8 @@ import {
     Keyboard, KeyboardAvoidingView,
     Platform, ToastAndroid
 } from 'react-native';
+import { connect } from 'react-redux';
+import { refreshTasks } from '../../actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import db from '../../networking/db';
 import colors from 'res/colors.json';
@@ -36,6 +38,8 @@ class LoginScreen extends React.Component {
             }
         }
         await AsyncStorage.setItem('userToken', token);
+        const tasks = await db.getAllTasks(); //fetch all task
+        this.props.refreshTasks(tasks);
         this.setState({ loading: false });
         this.props.navigation.navigate('Home');
     }
@@ -113,7 +117,7 @@ class LoginScreen extends React.Component {
                         placeholderTextColor={colors.lightRed}
                         style={styles.textInput}
                         value={this.state.password}
-                        keyboardType='default'
+                        secureTextEntry={true}
                         onChangeText={(password) => this.setState({ password })}
                     />
                 </Card>
@@ -206,4 +210,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default LoginScreen;
+export default connect(null, { refreshTasks })(LoginScreen);
