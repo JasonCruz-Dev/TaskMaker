@@ -57,7 +57,7 @@ const logoutUser = async () => {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + userToken,
+                'Authorization': 'Bearer ' + userToken,
             }),
         });
         console.log({ response })
@@ -79,7 +79,7 @@ const logoutAllSession = async () => {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + userToken,
+                'Authorization': 'Bearer ' + userToken,
             }),
         });
         if (response) {
@@ -99,7 +99,7 @@ const readUser = async () => {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + userToken,
+                'Authorization': 'Bearer ' + userToken,
             }),
         });
         let data = await response.json(); //expect an object with user info
@@ -118,7 +118,7 @@ const updateUser = async (object) => {
             method: 'PATCH',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + userToken,
+                'Authorization': 'Bearer ' + userToken,
             }),
             body: JSON.stringify(object)
         });
@@ -138,7 +138,7 @@ const deleteUser = async () => {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + userToken,
+                'Authorization': 'Bearer ' + userToken,
             }),
         });
         let data = await response.json(); //expect an object with deleted user info
@@ -158,7 +158,7 @@ const uploadAvatar = async (image) => {
         let response = await fetch(`${index}/users/me/avatar`, {
             method: 'POST',
             headers: new Headers({
-                'Authorization': 'Basic ' + userToken,
+                'Authorization': 'Bearer ' + userToken,
                 "Content-Type": "multipart/form-data",
             }),
             body: imageData
@@ -179,7 +179,7 @@ const syncTasks = async (tasks) => {
         let response = await fetch(`${index}/tasks/sync`, {
             method: 'POST',
             headers: new Headers({
-                'Authorization': 'Basic ' + userToken,
+                'Authorization': 'Bearer ' + userToken,
                 "Content-Type": "application/json",
             }),
             body: JSON.stringify(tasks)
@@ -199,7 +199,7 @@ const getAllTasks = async () => {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + userToken,
+                'Authorization': 'Bearer ' + userToken,
             }),
         });
         let data = await response.json(); //expect an array

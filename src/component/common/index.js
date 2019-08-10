@@ -8,3 +8,4 @@ export * from './Header';
 export * from './TopBar';
 export * from './ActionButton';
 export * from './ThemeChooser';
+export * from './Loader';

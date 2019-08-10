@@ -9,7 +9,16 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import _ from 'lodash';
 import db from '../../networking/db';
-import { DayCard, MoreOptionItem, Header, TopBar, ActionButton, ThemeChooser, TaskList, Loader } from '../common';
+import {
+    DayCard,
+    MoreOptionItem,
+    Header,
+    TopBar,
+    ActionButton,
+    ThemeChooser,
+    TaskList,
+    Loader
+} from '../common';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from 'res/colors.json';
@@ -43,18 +52,16 @@ class HomeScreen extends React.Component {
 
     syncTasks = async () => {
         console.log('sync')
-        // this.setState({ loading: true, showMoreOption: false });
+        this.setState({ loading: true, showMoreOption: false });
         const { taskArray } = this.props;
-        console.log(JSON.stringify(taskArray))
-        // const message = await db.syncTasks(taskArray);
-        // if (message) {
-        //     //fetch all task
-        const tasks = await db.getAllTasks();
-        this.props.refreshTasks(tasks);
-        //     this.setState({ loading: false });
-        // } else {
-        //     this.setState({ loading: false });
-        // }
+        const message = await db.syncTasks(taskArray);
+        if (message) {
+            const tasks = await db.getAllTasks(); //fetch all task
+            this.props.refreshTasks(tasks);
+            this.setState({ loading: false });
+        } else {
+            this.setState({ loading: false });
+        }
     }
 
     renderMoreOption(value) {
@@ -134,7 +141,7 @@ class HomeScreen extends React.Component {
                             </TouchableWithoutFeedback>
                             {this.renderMoreOption(value)}
                             {this.renderThemeChooser()}
-                            {/* {this.state.loading ? <Loader /> : null} */}
+                            {this.state.loading ? <Loader /> : null}
                         </View>
                     }}
                 </Context.Consumer>
