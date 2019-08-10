@@ -6,6 +6,7 @@ import * as actions from '../../actions';
 
 const TaskList = (props) => {
     onMarkDone = (task) => {
+        console.log('markdone', task.description)
         props.markDone(task)
     }
 
@@ -14,7 +15,21 @@ const TaskList = (props) => {
     }
 
     onUnmarkDone = (task) => {
+        console.log('markdone', task.description)
         props.undoDone(task)
+    }
+
+    renderItem = ({ item }) => {
+        return (
+            <TaskRow
+                done={item.completed}
+                task={item}
+                onMarkDone={onMarkDone}
+                onDelete={onDelete}
+                onUnmarkDone={onUnmarkDone}>
+                {item.description}
+            </TaskRow>
+        );
     }
 
     return (
@@ -23,18 +38,7 @@ const TaskList = (props) => {
                 data={props.taskArray}
                 initialNumToRender={4}
                 keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => {
-                    return (
-                        <TaskRow
-                            done={item.completed}
-                            item={item}
-                            onMarkDone={onMarkDone}
-                            onDelete={onDelete}
-                            onUnmarkDone={onUnmarkDone}>
-                            {item.description}
-                        </TaskRow>
-                    );
-                }}
+                renderItem={this.renderItem}
             />
         </View>
     );

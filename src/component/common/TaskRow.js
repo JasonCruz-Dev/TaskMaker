@@ -4,27 +4,29 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from 'res/colors.json';
 
 const TaskRow = (props) => {
-    onMarkDone = () => {
-        props.onMarkDone(props.item);
+    markDone = () => {
+        props.onMarkDone(props.task);
     }
-    onUnmarkDone = () => {
-        props.onUnmarkDone(props.item);
+    unMarkDone = () => {
+        props.onUnmarkDone(props.task);
     }
-    onDelete = () => {
-        props.onDelete(item);
+    deleteTask = () => {
+        props.onDelete(props.task);
     }
     return (
         <View style={styles.container}>
             {props.done ?
-                <TouchableOpacity onPress={onUnmarkDone}>
+                <TouchableOpacity onPress={unMarkDone}>
                     <Ionicons name='ios-checkmark-circle' size={20} color={colors.grey} />
                 </TouchableOpacity> :
-                <TouchableOpacity onPress={onMarkDone}>
+                <TouchableOpacity onPress={markDone}>
                     <Ionicons name='ios-radio-button-off' size={20} color={colors.black} />
                 </TouchableOpacity>}
-            <Text style={[styles.rowText, props.done ? { textDecorationLine: 'line-through', color: colors.grey } : null]}>{props.children}</Text>
+            <Text style={[styles.rowText, props.done ? { textDecorationLine: 'line-through', color: colors.grey } : null]}>
+                {props.children}
+            </Text>
             {props.done ?
-                <TouchableOpacity onPress={onDelete}>
+                <TouchableOpacity onPress={deleteTask}>
                     <Ionicons name='ios-close-circle' size={20} color={colors.grey} />
                 </TouchableOpacity> : null}
         </View>
