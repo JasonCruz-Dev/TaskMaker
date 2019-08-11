@@ -14,8 +14,8 @@ const TaskList = (props) => {
         props.deleteTask(task)
     }
 
-    onUnmarkDone = (task) => {
-        console.log('markdone', task.description)
+    onUnMarkDone = (task) => {
+        console.log('unmarkdone', task.description)
         props.undoDone(task)
     }
 
@@ -26,7 +26,7 @@ const TaskList = (props) => {
                 task={item}
                 onMarkDone={onMarkDone}
                 onDelete={onDelete}
-                onUnmarkDone={onUnmarkDone}>
+                onUnMarkDone={onUnMarkDone}>
                 {item.description}
             </TaskRow>
         );
