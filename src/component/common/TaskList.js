@@ -5,16 +5,16 @@ import { TaskRow } from './TaskRow';
 import * as actions from '../../actions';
 
 const TaskList = (props) => {
-    onMarkDone = (task) => {
+    onMarkDone = (task) => () => {
         console.log('markdone', task.description)
         props.markDone(task)
     }
 
-    onDelete = (task) => {
+    onDelete = (task) => () => {
         props.deleteTask(task)
     }
 
-    onUnMarkDone = (task) => {
+    onUnMarkDone = (task) => () => {
         console.log('unmarkdone', task.description)
         props.undoDone(task)
     }
@@ -24,9 +24,9 @@ const TaskList = (props) => {
             <TaskRow
                 done={item.completed}
                 task={item}
-                onMarkDone={onMarkDone}
-                onDelete={onDelete}
-                onUnMarkDone={onUnMarkDone}>
+                onMarkDone={onMarkDone(item)}
+                onDelete={onDelete(item)}
+                onUnMarkDone={onUnMarkDone(item)}>
                 {item.description}
             </TaskRow>
         );
