@@ -1,4 +1,5 @@
 import { ADD_TASK, MARK_DONE, UNDO_DONE, DELETE_TASK, CLEAR_COMPLETED, REFRESH_TASKS } from './types';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export const addTasks = (task, day, callback) => async dispatch => {
     let collection = {};
@@ -50,3 +51,14 @@ export const clearCompleted = () => async dispatch => {
         type: CLEAR_COMPLETED,
     });
 };
+
+export const getTasksFromStorage = () => async dispatch => {
+    let arrayObject = await AsyncStorage.getItem('tasks');
+    if (arrayObject) {
+        dispatch({
+            type: REFRESH_TASKS,
+            payload: JSON.parse(arrayObject)
+        });
+
+    }
+}

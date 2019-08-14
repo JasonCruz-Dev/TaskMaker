@@ -22,8 +22,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from 'res/colors.json';
 import Theme, { Context } from '../Theme';
-import AsyncStorage from '@react-native-community/async-storage';
 import TaskList from '../common/TaskList';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class HomeScreen extends React.Component {
     static contextType = Context;
@@ -36,17 +36,12 @@ class HomeScreen extends React.Component {
             loading: false
         }
         this.props.saveThemeInfo();
+        this.props.getTasksFromStorage();
     }
 
-    async componentDidMount() {
-        let arrayObject = await AsyncStorage.getItem('tasks');
-        if (arrayObject)
-            this.props.refreshTasks(JSON.parse(arrayObject));
-    }
-
-    async componentWillUnmount() {
-        const { taskArray } = this.props;
-        await AsyncStorage.setItem('tasks', JSON.stringify(taskArray));
+    static async getDerivedStateFromProps(props) {
+        await AsyncStorage.setItem('tasks', JSON.stringify(props.taskArray));
+        return null;
     }
 
     onPress = (day) => {
