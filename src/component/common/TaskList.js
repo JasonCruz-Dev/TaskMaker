@@ -6,7 +6,6 @@ import * as actions from '../../actions';
 
 const TaskList = (props) => {
     onMarkDone = (task) => () => {
-        console.log('markdone', task.description)
         props.markDone(task)
     }
 
@@ -15,7 +14,6 @@ const TaskList = (props) => {
     }
 
     onUnMarkDone = (task) => () => {
-        console.log('unmarkdone', task.description)
         props.undoDone(task)
     }
 

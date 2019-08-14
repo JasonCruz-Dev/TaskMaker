@@ -19,10 +19,10 @@ const TaskRow = (props) => {
     onHandlerStateChange = ({ nativeEvent }) => {
         if (nativeEvent.state === State.END) {
             if (nativeEvent.translationX > 100) {
-                markDone();
+                props.onMarkDone(props.task);
             }
             if (nativeEvent.translationX < -100) {
-                unMarkDone();
+                props.onUnMarkDone(props.task);
             }
         }
     }
