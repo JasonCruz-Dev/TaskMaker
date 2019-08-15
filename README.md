@@ -14,6 +14,9 @@
 ## Themes
 !['Onboading'](https://raw.githubusercontent.com/iamshadmirza/TaskMaker/master/themeshow.jpg)
 
+## Preview
+!['Preview'](https://raw.githubusercontent.com/iamshadmirza/TaskMaker/master/taskmaker.gif)
+
 ## Install
 
 ```sh
