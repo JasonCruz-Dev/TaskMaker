@@ -30,8 +30,8 @@ class Splash extends React.Component {
         return (
             <Theme name='red'>
                 <View style={styles.container}>
-                    <Image source={require('res/checklist.png')} resizeMode='contain' style={{ width: 100, height: 100 }} />
-                    <Text style={styles.text}>ToDo List Maker</Text>
+                    <Image source={require('res/checklist.png')} resizeMode='contain' style={styles.image} />
+                    <Text style={styles.text}>Task Maker</Text>
                 </View>
             </Theme>
         );
@@ -50,6 +50,10 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         color: colors.red,
         paddingVertical: 15,
+    },
+    image: {
+        width: 100,
+        height: 100
     }
 });
 
