@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { PanGestureHandler, State } from 'react-native-gesture-handler'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from 'res/colors.json';
@@ -18,6 +18,9 @@ const TaskRow = (props) => {
     deleteTask = () => {
         props.onDelete(props.task);
     }
+    onLongPress = () => {
+        props.onEdit(props.task);
+    }
 
     onHandlerStateChange = ({ nativeEvent }) => {
         if (nativeEvent.state === State.END) {
@@ -32,7 +35,7 @@ const TaskRow = (props) => {
 
     return (
         <PanGestureHandler onHandlerStateChange={onHandlerStateChange}>
-            <View style={styles.container}>
+            <TouchableOpacity style={styles.container} onLongPress={onLongPress}>
                 {props.done ?
                     <TouchableOpacity onPress={unMarkDone}>
                         <Ionicons name='ios-checkmark-circle' size={20} color={colors.grey} />
@@ -47,7 +50,7 @@ const TaskRow = (props) => {
                     <TouchableOpacity onPress={deleteTask}>
                         <Ionicons name='ios-close-circle' size={20} color={colors.grey} />
                     </TouchableOpacity> : null}
-            </View>
+            </TouchableOpacity>
         </PanGestureHandler>
     );
 }

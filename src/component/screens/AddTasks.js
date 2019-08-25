@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, TextInput, } from 'react-native';
 import { connect } from "react-redux";
-import { addTasks } from '../../actions';
+import { addTasks, editTask } from '../../actions';
 import { Header } from '../common';
 import Theme, { Context } from '../Theme';
 
@@ -10,20 +10,37 @@ class AddTasks extends React.Component {
         super();
         this.state = {
             task: '',
+            oldTask: '',
+            isEditing: false,
             day: ''
         }
     }
+
     componentWillMount() {
-        let day = this.props.navigation.getParam('day');
+        const task = this.props.navigation.getParam('task');
+        console.log('add', task)
+        if (task) {
+            this.setState({ task: task.description, day: task.day, oldTask: task, isEditing: true });
+            return;
+        }
+        const day = this.props.navigation.getParam('day');
         this.setState({ day });
     }
+
     onSubmitEditing() {
         if (this.state.task === '') { return this.props.navigation.goBack(); }
-        const { task, day } = this.state;
-        this.props.addTasks(task, day, () => {
-            this.props.navigation.goBack();
-        });
+        const { task, day, oldTask, isEditing } = this.state;
+        if (isEditing) {
+            this.props.editTask(task, day, oldTask, () => {
+                this.props.navigation.goBack();
+            });
+        } else {
+            this.props.addTasks(task, day, () => {
+                this.props.navigation.goBack();
+            });
+        }
     }
+
     render() {
         return (
             <Theme name={this.props.theme} bg={this.props.darkMode ? 'dark' : 'light'}>
@@ -72,4 +89,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { addTasks })(AddTasks);
+export default connect(mapStateToProps, { addTasks, editTask })(AddTasks);

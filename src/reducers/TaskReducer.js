@@ -4,7 +4,8 @@ import {
     UNDO_DONE,
     DELETE_TASK,
     CLEAR_COMPLETED,
-    REFRESH_TASKS
+    REFRESH_TASKS,
+    EDIT_TASK
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -16,6 +17,12 @@ export default (state = INITIAL_STATE, action) => {
         case ADD_TASK:
             const array = [action.payload, ...state.taskArray];
             return { ...state, taskArray: array };
+
+        case EDIT_TASK:
+            const editedTaskArray = state.taskArray.map(task => {
+                return task.description === action.oldTask.description ? action.payload : task;
+            });
+            return { ...state, taskArray: editedTaskArray };
 
         case MARK_DONE:
             let filteredTasks = state.taskArray.filter(task => task.description !== action.payload.description);

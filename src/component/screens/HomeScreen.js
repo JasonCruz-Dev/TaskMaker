@@ -136,13 +136,13 @@ class HomeScreen extends React.Component {
                                     <DayCard onPress={this.onPress}>
                                         Today
                                     </DayCard>
-                                    <TaskList>
+                                    <TaskList navigation={this.props.navigation}>
                                         today
                                     </TaskList>
                                     <DayCard onPress={this.onPress}>
                                         Draft
                                     </DayCard>
-                                    <TaskList>
+                                    <TaskList navigation={this.props.navigation}>
                                         draft
                                     </TaskList>
                                     <ActionButton onPress={this.onPress} />

@@ -6,15 +6,20 @@ import * as actions from '../../actions';
 
 const TaskList = (props) => {
     onMarkDone = (task) => () => {
-        props.markDone(task)
+        props.markDone(task);
     }
 
     onDelete = (task) => () => {
-        props.deleteTask(task)
+        props.deleteTask(task);
     }
 
     onUnMarkDone = (task) => () => {
-        props.undoDone(task)
+        props.undoDone(task);
+    }
+
+    onEdit = (task) => () => {
+        //redirect to Add Task screen with this task as payload
+        props.navigation.navigate('AddTasks', { task });
     }
 
     renderItem = ({ item }) => {
@@ -24,7 +29,8 @@ const TaskList = (props) => {
                 task={item}
                 onMarkDone={onMarkDone(item)}
                 onDelete={onDelete(item)}
-                onUnMarkDone={onUnMarkDone(item)}>
+                onUnMarkDone={onUnMarkDone(item)}
+                onEdit={onEdit(item)}>
                 {item.description}
             </TaskRow>
         );
