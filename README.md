@@ -29,6 +29,12 @@ npm install
 react-native run-android
 ```
 
+## Key features
+* Slide right to mark task completed
+* Slide left to mark task uncompleted
+* Long press on task to edit task
+* Choose theme from 10 different color combination
+
 ## Author
 
 👤 **Mohd Shad Mirza**
